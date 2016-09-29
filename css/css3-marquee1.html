@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS 实现3D字幕</title>
+    <style>
+      .demo{
+        perspective: 500px;
+        position: relative;
+        margin: 100px auto;
+      }
+      .demo div{
+        width: 500px;
+        height:192px;
+        position: absolute;
+        overflow: hidden;
+        opacity: 0.5;
+        font-size: 128px;
+      }
+      .box1{
+        background: #0f2fb3;
+        transform-origin: top right;
+        z-index: -1;
+        -webkit-transform: translate3d(0, 0, -340px) rotateY(-135deg); -moz-transform: translate3d(0, 0, -340px) rotateY(-135deg); -ms-transform: translate3d(0, 0, -340px) rotateY(-135deg); -o-transform: translate3d(0, 0, -340px) rotateY(-135deg); transform: translate3d(0, 0, -340px) rotateY(-135deg);
+      }
+      .box2{
+        background: #e5233e;
+        transform-origin: top right;
+        -webkit-transform: translateX(0) rotateY(-45deg); -moz-transform: translateX(0) rotateY(-45deg); -ms-transform: translateX(0) rotateY(-45deg); -o-transform: translateX(0) rotateY(-45deg); transform: translateX(0) rotateY(-45deg);
+        color: #fff;
+      }
+      .box3{
+        background: #b31e31;
+        transform-origin: top left;
+        -webkit-transform: translateX(0) rotateY(45deg); -moz-transform: translateX(0) rotateY(45deg); -ms-transform: translateX(0) rotateY(45deg); -o-transform: translateX(0) rotateY(45deg); transform: translateX(0) rotateY(45deg);
+        color: #f8c9d9;
+      }
+      .box4{
+        background: #0a08b3;
+        transform-origin: top left;
+        z-index: -1;
+        -webkit-transform: translate3d(0, 0, -340px) rotateY(135deg); -moz-transform: translate3d(0, 0, -340px) rotateY(135deg); -ms-transform: translate3d(0, 0, -340px) rotateY(135deg); -o-transform: translate3d(0, 0, -340px) rotateY(135deg); transform: translate3d(0, 0, -340px) rotateY(135deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="box1">
+        <!--<span>ONE WORLD ONE DREAM</span>-->
+      </div>
+      <div class="box2">
+        <!--<span>ONE WORLD ONE DREAM</span>-->
+      </div>
+      <div class="box3">
+        <!--<span>ONE WORLD ONE DREAM</span>-->
+      </div>
+      <div class="box4">
+        <!--<span>ONE WORLD ONE DREAM</span>-->
+      </div>
+    </div>
+  </body>
+</html>
