@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS 实现3D字幕</title>
+    <style>
+      .demo{
+        perspective: 500px;/*设置视距*/
+        margin: 100px auto;
+        position: relative;
+      }
+      .demo > div{
+        width: 480px;
+        height: 192px;
+        position: absolute;
+        overflow: hidden;
+        opacity: 0.5;
+        font-size: 128px;
+      }
+      .box1{
+        background: #0f2fb3;
+        transform-origin: top left;
+        -webkit-transform: translateZ(-240px) rotateY(45deg); -moz-transform: translateZ(-240px) rotateY(45deg); -ms-transform: translateZ(-240px) rotateY(45deg); -o-transform: translateZ(-240px) rotateY(45deg); transform: translateZ(-240px) rotateY(45deg);
+        z-index:-1;
+      }
+      .box2{
+        background: #e5233e;
+        transform-origin: top right;
+        -webkit-transform: translateX(-65px) rotateY(-30deg);
+        -moz-transform: translateX(-65px) rotateY(-30deg);
+        -ms-transform: translateX(-65px) rotateY(-30deg);
+        -o-transform: translateX(-65px) rotateY(-30deg);
+        transform: translateX(-65px) rotateY(-30deg);
+        color: #fff;
+      }
+      .box3{
+        background: #b31e31;
+        transform-origin: top left;
+        -webkit-transform: translateX(415px) rotateY(45deg);
+        -moz-transform: translateX(415px) rotateY(45deg);
+        -ms-transform: translateX(415px) rotateY(45deg);
+        -o-transform: translateX(415px) rotateY(45deg);
+        transform: translateX(415px) rotateY(45deg);
+        color: #f8c9d9;
+      }
+      .box4{
+        background: #0a08b3;
+        transform-origin: top right;
+        -webkit-transform: translate3d(275px,0,-340px) rotateY(-30deg);
+        -moz-transform: translate3d(275px,0,-340px) rotateY(-30deg); -ms-transform: translate3d(275px,0,-340px) rotateY(-30deg); -o-transform: translate3d(275px,0,-340px) rotateY(-30deg); transform: translate3d(275px,0,-340px) rotateY(-30deg);
+        z-index: -1;
+      }
+      .demo > div > span{
+        position: absolute;
+        width: 400%;
+        line-height:1.2;
+      }
+      .box1 span{
+        -webkit-transform: translate3d(-1440px, 0, -240px); -moz-transform: translate3d(-1440px, 0, -240px); -ms-transform: translate3d(-1440px, 0, -240px); -o-transform: translate3d(-1440px, 0, -240px);
+        transform: translate3d(-2297px, 0, -240px);
+        animation: marquee-three 28s linear infinite;
+      }
+      .box2 span{
+        -webkit-transform: translateX(960px); -moz-transform: translateX(960px); -ms-transform: translateX(960px); -o-transform: translateX(960px);
+        transform: translateX(960px);
+        animation: marquee-two 14s linear infinite;
+        text-shadow: 4px 0 4px rgba(0,0,0,0.3);
+      }
+      .box3 span{
+        -webkit-transform: translateX(480px); -moz-transform: translateX(480px); -ms-transform: translateX(480px); -o-transform: translateX(480px); transform: translateX(480px);
+        animation: marquee-one 14s linear infinite;
+      }
+      .box4 span{
+        -webkit-transform: translate3d(-1920px, 0, -340px); -moz-transform: translate3d(-1920px, 0, -340px); -ms-transform: translate3d(-1920px, 0, -340px); -o-transform: translate3d(-1920px, 0, -340px);
+        transform: translate3d(-2777px, 0, -340px);
+        animation: marquee-four 28s linear infinite;
+        text-shadow: 4px 0 4px rgba(0,0,0,0.3);
+      }
+      @keyframes marquee-one {
+        to { -webkit-transform: translateX(-1600px); -moz-transform: translateX(-1600px); -ms-transform: translateX(-1600px); -o-transform: translateX(-1600px);
+          transform: translateX(-2020px);}
+      }
+      @keyframes marquee-two {
+        to { -webkit-transform: translateX(-2080px); -moz-transform: translateX(-2080px); -ms-transform: translateX(-2080px); -o-transform: translateX(-2080px);
+          transform: translateX(-1540px);}
+      }
+      @keyframes marquee-three{
+        to { -webkit-transform: translate3d(1600px, 0, -240px); -moz-transform: translate3d(1600px, 0, -240px); -ms-transform: translate3d(1600px, 0, -240px); -o-transform: translate3d(1600px, 0, -240px);
+          transform: translate3d(2703px, 0, -240px);}
+      }
+      @keyframes marquee-four{
+        to { -webkit-transform: translate3d(1600px, 0, -340px); -moz-transform: translate3d(1600px, 0, -340px); -ms-transform: translate3d(1600px, 0, -340px); -o-transform: translate3d(1600px, 0, -340px);
+          transform: translate3d(2223px, 0, -340px);}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="box1">
+        <span><bdo dir="rtl">ONE WORLD ONE DREAM</bdo></span>
+      </div>
+      <div class="box2">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+      <div class="box3">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+      <div class="box4">
+        <span><bdo dir="rtl">ONE WORLD ONE DREAM</bdo></span>
+      </div>
+    </div>
+  </body>
+</html>
