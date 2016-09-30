@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CSS 实现3D字幕</title>
+    <style>
+      .demo{
+        perspective: 350px;
+        position: relative;
+        margin: 100px auto;
+      }
+      .demo div{
+        width: 500px;
+        height:160px;
+        position: absolute;
+        overflow: hidden;
+        opacity: 0.5;
+        font-size: 80px;
+      }
+      .box1{
+        background: #b31e31;
+        color: #f8c9d9;
+      }
+      .box2{
+        background: #e5233e;
+        color: #fff;
+        transform-origin: top right;
+        -webkit-transform: rotateY(-45deg);
+        -moz-transform: rotateY(-45deg);
+        -ms-transform: rotateY(-45deg);
+        -o-transform: rotateY(-45deg);
+        transform: rotateY(-45deg) translate3d(-355px,0,354px);
+      }
+      .box3{
+        background: #0f2fb3;
+        z-index: -1;
+        color: #fff;
+        transform-origin: top left;
+        -webkit-transform: rotateY(135deg);
+        -moz-transform: rotateY(135deg);
+        -ms-transform: rotateY(135deg);
+        -o-transform: rotateY(135deg);
+        transform: rotateY(135deg) translate3d(-356px,0,354px);
+      }
+      .box4{
+        background: #0a08b3;
+        z-index: -1;
+        color: #f8c9d9;
+        transform-origin: top left;
+        -webkit-transform: translate3d(144px, 0, -355px);
+        -moz-transform: translate3d(144px, 0, -355px);
+        -ms-transform: translate3d(144px, 0, -355px);
+        -o-transform: translate3d(144px, 0, -355px);
+        transform: translate3d(144px, 0, -355px) rotateY(180deg);
+      }
+      .demo > div > span{
+        position: absolute;
+        width: 900px;
+        line-height:1.8;
+      }
+      .box1 span{
+        -webkit-transform: translateX(500px); -moz-transform: translateX(500px); -ms-transform: translateX(500px); -o-transform: translateX(500px); transform: translateX(500px);
+        animation: marquee-one 15s linear infinite;
+      }
+      .box2 span{
+        -webkit-transform: translateX(1000px); -moz-transform: translateX(1000px); -ms-transform: translateX(1000px); -o-transform: translateX(1000px); transform: translateX(1000px);
+        animation: marquee-two 15s linear infinite;
+        text-shadow: 4px 0 4px rgba(0,0,0,0.3);
+      }
+      .box3 span{
+        -webkit-transform: translateX(2000px); -moz-transform: translateX(2000px); -ms-transform: translateX(2000px); -o-transform: translateX(2000px); transform: translateX(2000px);
+        animation: marquee-four 15s linear infinite;
+      }
+      .box4 span{
+        -webkit-transform: translateX(1500px); -moz-transform: translateX(1500px); -ms-transform: translateX(1500px); -o-transform: translateX(1500px); transform: translateX(1500px);
+        animation: marquee-three 15s linear infinite;
+      }
+      @keyframes marquee-one {
+        to { -webkit-transform: translateX(-2400px); -moz-transform: translateX(-2400px); -ms-transform: translateX(-2400px); -o-transform: translateX(-2400px); transform: translateX(-2400px);}
+      }
+      @keyframes marquee-two {
+        to { -webkit-transform: translateX(-1900px); -moz-transform: translateX(-1900px); -ms-transform: translateX(-1900px); -o-transform: translateX(-1900px); transform: translateX(-1900px);}
+      }
+      @keyframes marquee-three {
+        to { -webkit-transform: translateX(-1400px); -moz-transform: translateX(-1400px); -ms-transform: translateX(-1400px); -o-transform: translateX(-1400px); transform: translateX(-1400px);}
+      }
+      @keyframes marquee-four {
+        to { -webkit-transform: translateX(-900px); -moz-transform: translateX(-900px); -ms-transform: translateX(-900px); -o-transform: translateX(-900px); transform: translateX(-900px);}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="box1">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+      <div class="box2">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+      <div class="box3">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+      <div class="box4">
+        <span>ONE WORLD ONE DREAM</span>
+      </div>
+    </div>
+  </body>
+</html>
