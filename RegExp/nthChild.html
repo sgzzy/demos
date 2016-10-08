@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      function nthChild(nodeList, selector){
+        var x,y; //xn +y
+        var reg = /(-?\d*)[n]*([+-]\d+)*/,
+          m = selector.match(reg);
+        if(selector === m[1]){
+          return [nodeList[(parseInt(m[1])-1)]];
+        }
+        function filter(index){ // 过滤器函数
+          //console.log('m1' + m[1], 'm2' + m[2]);
+          x = m[1];
+          y = m[2];
+          if(m[2]){  // n后面存在y
+            if('' === m[1]){ // x=1且隐藏掉时。
+              x = 1;
+              y = m[2];
+            } else if ('-' === m[1]) {
+              x = -1;
+              y = m[2];
+            }
+          } else {
+              y = 0;
+          }
+          var n = (index -parseInt(y)) / parseInt(x);
+         // console.log('x' + x, 'y' + y, n + 'n');
+          return (n === parseInt(n) && n >= 0) ? true : false;
+        }
+        var result = [];
+        var l = nodeList.length;
+        for (var i = 1; i <=l; i++){
+          //console.log(i,filter(i));
+          if(filter(i)) {
+            result.push(nodeList[i - 1]);
+          }
+        }
+        return result;
+      }
+      window.onload = function (){
+        var lis = document.getElementsByTagName('li');
+        var args = nthChild(lis, '2n+1');
+        args[1].style.fontSize = 13 + 'px';
+        console.log(args);
+        nthChild(lis, '2');
+        nthChild(lis, 'n+3');
+      }
+    </script>
+  </head>
+  <body>
+    <section class="ui-main">
+      <div class="ui-main-left">
+        <section class="ui-panel">
+          <header class="ui-panel-header">RECRUITMENT/招聘信息</header>
+          <div class="ui-panel-body">
+            <ul class="ui-list">
+              <li class="ui-list-item"><a href="/news">新闻动态</a></li>
+              <li class="ui-list-item"><a href="/business">主营业务</a></li>
+              <li class="ui-list-item active"><a href="/jobs">招聘信息</a></li>
+              <li class="ui-list-item"><a href="/custom">合作客户</a></li>
+              <li class="ui-list-item"><a href="/cooperation">加盟合作</a></li>
+              <li class="ui-list-item"><a href="/contact">联系我们</a></li>
+              <li class="ui-list-item"><a href="/about">关于国信通</a></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      <div class="ui-main-right">
+        <section class="ui-panel">
+          <header class="ui-panel-header fn-clear">
+            招聘信息<span class="ui-more">您当前位置：<a href="/statics/apps/index/index.html">国信通</a> &gt;&gt;
+        <a href="/jobs">招聘信息</a></span>
+          </header>
+          <div class="ui-panel-body">
+            <ul class="ui-list">
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/01">普联技术有限公司招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/02">OPPO移动通信有限公司</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/03">昌硕科技（上海）有限公司招工简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/04">达富电脑（常熟）招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/05">捷普绿点科技（无锡）有限公司</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/06">群光电子（苏州）有限公司</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear"><a href="/jobs/07">仁宝集团</a><span>2016-08-21</span>
+              </li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/08">上海达丰电脑招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear"><a href="/jobs/09">南京华宝通讯</a><span>2016-08-21</span>
+              </li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/10">南京英达华科技有限公司</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/11">TCL集团股份有限公司招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/12">深圳比亚迪招工简章（广东地区）</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/13">深圳创维集团招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/14">深圳藤佳能源电子有限公司招聘简章</a><span>2016-08-21</span></li>
+              <li class="ui-list-item fn-clear"><a href="/jobs/15">深圳伟创力</a><span>2016-08-21</span>
+              </li>
+              <li class="ui-list-item fn-clear">
+                <a href="/jobs/16">纬创资通（昆山）有限公司</a><span>2016-08-21</span></li>
+            </ul>
+            <div class="ui-pagination">共
+              <span class="ui-record-count">2</span> 篇 页次：<span class="ui-curr-page">1</span>/<span class="ui-total-page">1</span> 页
+              <span class="ui-pagination-count">20</span>篇/页 首页 上一页 下一页 尾页 转到第
+              <input type="text" class="ui-pagination-index" title="输入页码"> 页
+              <input type="button" class="ui-pagination-jump" value="跳转">
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </body>
+</html>
