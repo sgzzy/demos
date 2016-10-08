@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>GXT</title>
+    <style type="text/css">
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .wrap {
+        display: flex;
+        flex-flow: column nowrap;
+        min-height: 100vh;
+      }
+      header {
+        width: 100%;
+        flex-basis: 160px;
+      }
+      footer {
+        width: 100%;
+        flex-basis: 208px;
+      }
+      .banner {
+        width: 100%;
+        flex-basis: 550px;
+      }
+      .marquee {
+        width: 100%;
+        flex-basis: 35px;
+      }
+      .main{
+        width: 1200px;
+        margin: 10px auto;
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+      .panel{
+        border: 1px solid #292af1;
+      }
+      .row{
+        flex-basis: 800px;
+        justify-content: space-between;
+        display: flex;
+      }
+      .row1{
+        flex-basis: 140px;
+      }
+      .column{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-basis:870px;
+      }
+      .column1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-basis: 320px;
+      }
+      .row-01{
+        flex-basis: 218px;
+      }
+      .row-02{
+        display: flex;
+        flex-basis: 353px;
+        justify-content: space-between;
+      }
+      .row-03{
+        flex-basis: 198px;
+      }
+      .column-01{
+        flex-basis: 430px;
+      }
+      .row-right{
+        flex-basis: 363px;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header></header>
+      <div class="banner"></div>
+      <div class="marquee"></div>
+      <div class="main">
+        <div class="row">
+          <div class="column">
+            <div class="row-01 panel"></div>
+            <div class="row-02">
+              <div class="column-01 panel"></div>
+              <div class="column-01 panel"></div>
+            </div>
+            <div class="row-03 panel"></div>
+          </div>
+          <div class="column1">
+            <div class="row-right panel"></div>
+            <div class="row-right panel"></div>
+          </div>
+        </div>
+        <div class="row1 panel"></div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

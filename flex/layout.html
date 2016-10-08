@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Flex Layout</title>
+    <style type="text/css">
+      body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      .wrap {
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        flex-flow: column nowrap;
+        background-color: #f0f0f0;
+      }
+      header {
+        width: 100%;
+        flex-basis: 100px;
+        background: #666666;
+      }
+      .main{
+        width: 100%;
+        display: -webkit-flex;
+        display: flex;
+        flex: 1;
+      }
+      .main .nav {
+        order: 0;
+        flex-basis: 200px;
+        background: #77bbdd;
+      }
+      .main .content {
+        flex: 1;
+        background: #d6d6d6;
+      }
+      .main .ads {
+        flex-basis: 300px;
+        background-color: #ff6633;
+      }
+      footer{
+        width: 100%;
+        flex-basis: 100px;
+        background: #666666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header></header>
+      <div class="main">
+        <nav class="nav"></nav>
+        <section class="content"></section>
+        <aside class="ads"></aside>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>
