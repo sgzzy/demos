@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+    <!--[if lte IE 6]>
+    <script>
+      document.createElement("abbr");
+    </script>
+    <![endif]-->
+    <p>Tony Blair is the prime minister of the <abbr title="United Kingdom">UK</abbr></p>
+    如果提供描述，那么title属性的值必须是这个完整描述，而不能是其他值。
+    一些浏览器，比如IE，对它的添加的样式和span 元素的样式完全相同。
+    Opera、Firefox和其他一些浏览器给这个元素的内容添加一条点状下划线 。
+    一些浏览器不仅添加点状下划线，而且还把元素的内容添加小写大写字母的样式。为了避免这个样式，在CSS中添加font-variant: none 。
+  </body>
+</html>

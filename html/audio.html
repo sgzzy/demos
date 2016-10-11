@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+    <!-- Simple audio playback -->
+    <audio src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" autoplay>
+      Your browser does not support the <code>audio</code> element.
+    </audio>
+
+    <!-- Audio playback with captions -->
+    <audio src="foo.ogg">
+      <track kind="captions" src="foo.en.vtt" srclang="en" label="English">
+      <track kind="captions" src="foo.sv.vtt" srclang="sv" label="Svenska">
+    </audio>
+    <audio controls="controls">
+      Your browser does not support the <code>audio</code> element.
+      <source src="foo.wav" type="audio/wav">
+    </audio>
+  </body>
+</html>
