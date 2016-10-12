@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      ul {
+      }
+      ul li{
+        /*list-style: square inside url("../assets/images/icon05.gif");*/
+      }
+      li a {
+        display: inline-block;
+        padding: 1em 0;
+      }
+      .demo {
+        width: 200px;
+        font-size: 16px;
+        padding: 0 1em;
+      }
+      .list-item {
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .sub-list li {
+        border-top: 1px solid #f0f0f0;
+      }
+      .sub-list{
+        -webkit-transition: all 1s linear; -moz-transition: all 1s linear; -ms-transition: all 1s linear; -o-transition: all 1s linear; transition: all 1s linear;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="demo">
+      <li class="list-item"><a href="#">首页</a></li>
+      <li class="list-item"><a href="#">页面模板</a>
+        <ul class="sub-list active">
+          <li><a href="#">个人资料</a></li>
+          <li><a href="#">个人资料</a></li>
+          <li><a href="#">个人资料</a></li>
+          <li><a href="#">个人资料</a></li>
+        </ul>
+      </li>
+      <li class="list-item"><a href="#">首页</a></li>
+      <li class="list-item"><a href="#">首页</a></li>
+      <li class="list-item"><a href="#">首页</a></li>
+    </ul>
+  </body>
+</html>

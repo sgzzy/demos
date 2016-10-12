@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      body{
+        counter-reset: section;
+      }
+      .list-item{
+        counter-reset: subsection;
+      }
+      .list .list-item:before{
+        content:counter(section)". ";
+        counter-increment: section;
+      }
+      .sub-list .sub-list-item:before{
+        counter-increment: subsection;
+        content: counter(section)"." counter(subsection) " ";
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list">
+      <li class="list-item">AXIBA
+        <ul class="sub-list">
+          <li class="sub-list-item">AXIBA</li>
+          <li class="sub-list-item">AXIBA</li>
+          <li class="sub-list-item">AXIBA</li>
+          <li class="sub-list-item">AXIBA</li>
+        </ul>
+      </li>
+      <li class="list-item">AXIBA</li>
+      <li class="list-item">AXIBA</li>
+      <li class="list-item">AXIBA</li>
+      <li class="list-item">AXIBA</li>
+    </ul>
+  </body>
+</html>

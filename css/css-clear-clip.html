@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      .demo {
+        width: 1000px;
+        height: 500px;
+        margin: 100px auto;
+      }
+      .demo div {
+        width: 300px;
+        height: 150px;
+      }
+      .demo .box1 {
+        float: left;
+        background: #aff;
+      }
+      .demo .box2 {
+        clear: left;
+        float: right;
+        background: #ffa;
+      }
+      .demo .box3{
+        clear: both;
+        background: #faf;
+      }
+      .demo .box4 {
+        position: absolute;
+        clip: rect(0,100px,100px,0);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="box1">
+        <p>注意，对于没有固有尺寸或固有比例的矢量图不是所有的浏览器都支持。特别注意测试Firefox 7- 与Firefox 8+，以确定不同之处能否接受。
+        </p>
+      </div>
+      <p>注意，对于没有固有尺寸或固有比例的矢量图不是所有的浏览器都支持。特别注意测试Firefox 7- 与Firefox 8+，以确定不同之处能否接受。
+      </p>
+      <div class="box2"></div>
+      <div class="box3"></div>
+      <div class="box4">
+        <img src="../images/dusk-lake.jpg">
+      </div>
+    </div>
+  </body>
+</html>
