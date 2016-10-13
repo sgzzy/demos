@@ -1,10 +1,220 @@
 <!DOCTYPE html>
+<!--suppress CssUnknownTarget -->
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>The first form</title>
+    <style type="text/css">
+      @import "https://fonts.googleapis.com/css?family=Lato:400,700,900,300";
+      @import "http://weloveiconfonts.com/api/?family=fontawesome";
+      body{
+        background: #333;
+        font-family: 'Lato', sans-serif;
+      }
+      .demo{
+        max-width: 960px;
+        margin:100px auto;
+        font-size: 0;
+      }
+      .demo h1{
+        font-size: 25px;
+      }
+      .demo form > label{
+        font-size: 14px;
+        display: inline-block;
+        vertical-align: top;
+        width:33.3%;
+        color: tomato;
+        font-weight: bold;
+        line-height: 2;
+        margin-bottom: 20px;
+      }
+      input[type=text],
+      input[type=password],
+      input[type=number]{
+        width:80%;
+        font-size: 16px;
+        color: tomato;
+        padding: .5em;
+        border-radius: 3px;
+        border: 1px solid #333;
+        outline: none;
+        box-shadow: 0 0 2px #ddd inset;
+      }
+      #rangeValue{
+        width: 10%;
+      }
+      .demo form fieldset{
+        height: 200px;
+        font-size: 16px;
+        color: #fff;
+      }
+      input[type=submit],
+      input[type=reset],
+      input[type=button],
+      button {
+        background: tomato;
+        color: #fff;
+        border: 1px solid #333;
+        outline: none;
+        padding: .5em 1em;
+      }
+
+    </style>
   </head>
   <body>
+    <div class="demo">
+      <h1>表单元素的基本样式展现</h1>
+      <form>
+        <label>
+          text<br>
+          <input type="text" name="text" id="ui-text" class="ui-text" placeholder="Text">
+        </label>
+        <label>
+          password<br>
+          <input type="password" name="password" id="ui-password" class="ui-password" placeholder="Password">
+        </label>
+        <label>
+          number<br>
+          <input type="number" name="number" id="ui-num" class="ui-num" placeholder="0123456789" step="8" max="100" min="0">
+        </label>
+        <label>
+          email<br>
+          <input type="email" name="email" id="ui-email" class="ui-email" placeholder="yourname@email.com">
+        </label>
+        <label>
+          url<br>
+          <input type="url" name="url" id="ui-url" class="ui-url" placeholder="http://website.com">
+        </label>
+        <label>
+          tel<br>
+          <input type="tel" name="tel" id="ui-tel" class="ui-tel" placeholder="(012)3456789">
+        </label>
+        <label>
+          search<br>
+          <input type="search" name="search" id="ui-search" class="ui-search" placeholder="Search">
+        </label>
+        <label>
+          textarea<br>
+          <textarea rows="5" cols="40" placeholder="Your message. I'm afraid I still don't understand, sir. Maybe if we felt any human loss as keenly as we feel one of those close to us, human history would be far less bloody."></textarea>
+        </label><br>
+        <label>
+          date<br>
+          <input type="date" name="date" id="ui-date" class="ui-date">
+        </label>
+        <label>
+          datetime<br>
+          <input type="datetime" name="datetime" id="ui-datetime" class="ui-datetime">
+        </label>
+        <label>
+          datetime-local<br>
+          <input type="datetime-local" name="datetime-local" id="ui-datetime-local" class="ui-datetime-local">
+        </label>
+        <label>
+          month<br>
+          <input type="month" name="month" id="ui-month" class="ui-month">
+        </label>
+        <label>
+          week<br>
+          <input type="week" name="week" id="ui-week" class="ui=week">
+        </label>
+        <label>
+          time<br>
+          <input type="time" name="time" id="ui-time" class="ui-time">
+        </label>
+        <label>
+          select<br>
+          <select>
+            <option value="1" disabled selected>Select...</option>
+            <option>This is option 1</option>
+            <option>This is option 2</option>
+            <option>This is option 3</option>
+          </select>
+        </label>
+        <label>
+          select(multiple attr)<br>
+          <select multiple>
+            <option>This is option 1</option>
+            <option>This is option 2</option>
+            <option>This is option 3</option>
+          </select>
+        </label>
+        <label>
+          select(size attr)<br>
+          <select size="2">
+            <option>This is option 1</option>
+            <option>This is option 2</option>
+            <option>This is option 3</option>
+          </select>
+        </label>
+        <label>
+          datalist(Start typing This...)<br>
+          <input list="datalist">
+          <datalist id="datalist">
+            <option>This is option 1</option>
+            <option>This is option 2</option>
+            <option>This is option 3</option>
+          </datalist>
+        </label>
+        <label>
+          keygen<br>
+          <keygen></keygen>
+        </label>
+        <label>
+          output<br>
+          <output></output>
+        </label>
+        <label>
+          <input type="radio" name="radio" value="Radio 1" id="ui-radio-1" autofocus="autofocus"><label for="ui-radio-1">Radio 1</label><br>
+          <input type="radio" name="radio" value="Radio 2" id="ui-radio-2"><label for="ui-radio-2">Radio 2</label><br>
+          <input type="radio" name="radio" value="Radio 3" id="ui-radio-3"><label for="ui-radio-3">Radio 3</label><br>
+        </label>
+        <label>
+          <input type="checkbox" name="check" value="Check 1" id="ui-check-1" autofocus><label for="ui-check-1">CheckBox 1</label><br>
+          <input type="checkbox" name="check" value="Check 2" id="ui-check-2"><label for="ui-check-2">CheckBox 2</label><br>
+          <input type="checkbox" name="check" value="Check 3" id="ui-check-3"><label for="ui-check-3">CheckBox 3</label><br>
+        </label>
+        <label>
+          color<br>
+          <input type="color" name="color" id="ui-color" class="ui-color">
+        </label>
+        <label>
+          range<br>
+          <input type="range" id="rangeSlider" min="0" max="100" step="10" value="20" onchange="printValue('rangeSlider','rangeValue')">
+          <input type="text" id="rangeValue" size="3">
+        </label>
+        <label>
+          file<br>
+          <input type="file" name="file" id="ui-file" class="ui-file">
+        </label><br>
+        <label>
+          <input type="submit"  class="ui-submit">
+        </label>
+        <label>
+          <input type="reset"  class="ui-reset">
+        </label>
+        <label>
+          <input type="button"  class="ui-input-button" value="Button(input元素)">
+        </label>
+        <label>
+          <button class="ui-button">Button(button tag)</button>
+        </label>
+        <fieldset>
+          <legend>This is the Legend</legend>
+          Fieldset
+        </fieldset>
+      </form>
+    </div>
+    <script>
+      function printValue(sliderId,textbox){
+        var vaule1 = document.getElementById(textbox);
+        var vaule2 = document.getElementById(sliderId);
+        vaule1.value = vaule2.value;
+      }
+      window.onload = function (){
+        printValue('rangeSlider','rangeValue')
+      };
+    </script>
     Feature             	Chrome	Firefox (Gecko)	   Internet Explorer	Opera	Safari
     Basic support        	1.0	   1.0(1.7 or earlier)	    (Yes)	        (Yes)	(Yes)
     novalidate attribute	1.0	       4.0(2.0)	              10	           ?	  ?
