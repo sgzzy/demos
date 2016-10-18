@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>大小不固定图片的垂直居中布局</title>
+    <style>
+      .demo {
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        width: 150px;
+        height: 150px;
+        font-size: 0;
+        text-align: center;/*水平居中*/
+      }
+      .demo:after { /*利用空白节点垂直居中，同时让空白节点不占据宽度，避免影响水平居中效果*/
+        content: '';
+        display: inline;
+        line-height:150px;
+        font-size: 0;
+        vertical-align: middle;
+      }
+      .demo img {
+        width: 90px;
+        height: 90px;
+        vertical-align: middle;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <img src="">
+    </div>
+  </body>
+</html>

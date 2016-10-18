@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Header Demo</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="head-one.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="footer.css">
+  </head>
+  <body>
+    <!--[if lt IE9]>
+    <script type="text/javascript">
+      (function (){
+        if (!/*@cc_on!@*/0)
+          return;
+        var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(',');
+        var i = e.length;
+        while (i--) {
+          document.createElement(e[i]);
+        }
+      })()
+    </script>
+    <![endif]-->
+    <header class="ui-header">
+      <div class="header fn-clear">
+        <a href="header.html" class="header-logo">
+          <img src="" alt="Logo">
+          <span>Website Introduction</span>
+        </a>
+        <div class="header-login">
+          <a href="#" class="login">登录</a>
+          <a href="#" class="register">注册</a>
+        </div>
+        <div class="header-search">
+          <input type="text" placeholder="搜索">
+        </div>
+        <nav class="header-nav">
+          <ul class="list fn-clean-space">
+            <li class="list-item"><a href="#">首页</a></li>
+            <li class="list-item"><a href="#">关于</a>
+              <ul class="sub-list">
+                <li class="list-item"><a href="#">简介</a></li>
+                <li class="list-item"><a href="#">资质</a></li>
+                <li class="list-item"><a href="#">优势</a></li>
+                <li class="list-item"><a href="#">文化</a></li>
+                <li class="list-item"><a href="#">历史</a></li>
+              </ul>
+            </li>
+            <li class="list-item"><a href="#">动态</a>
+              <ul class="sub-list">
+                <li class="list-item"><a href="#">内部</a></li>
+                <li class="list-item"><a href="#">行业</a></li>
+                <li class="list-item"><a href="#">政策</a></li>
+                <li class="list-item"><a href="#"></a></li>
+              </ul>
+            </li>
+            <li class="list-item"><a href="#">招聘</a></li>
+            <li class="list-item"><a href="#">联系</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="main fn-clean-space">
+      <aside class="main-left fn-layout">
+
+      </aside>
+      <section class="container fn-layout">
+        <section class="panel">
+          <header class="panel-header">
+            <h2>首页</h2>
+          </header>
+          <div class="panel-body fn-clear">
+            <img src="" alt="Shou Ye">
+            <p>
+              通过这些代码，你可以立即识别出它们的结构、功能和含义。父节点的类名是 stream ，内容是一个文章列表。
+              它的子节点的类名是 streamItem ，内容是文章列表中的一篇具体的文章。这使我们很容易的了解到父节点和子
+              节点之间的关系。并且，这些类可以在每一个有文章功能的页面中使用。
+              在这个充满了组件库（以 React 为例）的时代，模块化就是王者。组件就是由已经解构了的接口创建的可组合
+              的模块。下面是一个Product Hunt（一种发布好的创业项目的网站）前端页面。作为练习，让我们将这个页面分
+              解成一系列的组件。由于 stream 组件和它的子控件是完全独立的，你可以很容易的调整或者更换 post 组件，
+              并且这不会对 stream 组件产生任何影响。使用组件的思想将会使你的代码解耦。解耦的代码越多，你的类之间
+              的依赖就越低。这会让你的代码更容易修改，并且使你的代码更长时间的工作下去而不用修改它译者注：随着
+              Node.js 、react-native 等技术的不断出现，和互联网行业的创业的层出不穷，了解些前端知识，成为全栈攻
+              城师，快速的产出原型，展示你的创意，对程序员，尤其是在创业的程序员来说，越来越重要，下面我们就跟随
+              著名国外开发者网站上的热推文章《Leveling up in CSS》，从提升你的CSS技巧开始。
+            </p>
+          </div>
+        </section>
+        <ul class="picked-grid list">
+          <li class="list-item">
+            <a class="single">
+              <img src="" alt="图片一">
+              <p>这是一段介绍性文字</p>
+            </a>
+          </li>
+          <li class="list-item">
+            <a class="single">
+              <img src="" alt="图片一">
+              <p>这是一段介绍性文字</p>
+            </a>
+          </li>
+          <li class="list-item">
+            <a class="single">
+              <img src="" alt="图片一">
+              <p>这是一段介绍性文字</p>
+            </a>
+          </li>
+        </ul>
+        <article class="post-01">
+          <header>
+            <h2>ES6中块级作用域及变量声明let</h2>
+            <div class="meta">
+              发表于<a class="public-time">2016年10月13号</a>by<a class="author">天涯孤雁</a>被浏览<span class="read-time">594</span>次
+            </div>
+          </header>
+          <div class="content">
+            <p>ES6之前JavaScript没有块级作用域，它使用var声明变量，以function来划分作用域，大括号“{}” 却限定不了var的作用域,用var声明的变量具有
+              变量提升（declaration hoisting）的效果。ES6新增加了一个let，可以在{}， if， for里声明。用法同var，但作用域限定在块级，let声明的变
+              量不存在变量提升</p>
+            <a class="read-more">继续阅读</a>
+          </div>
+          <footer>
+            <span class="cat-links">分类 <a href="#">JS</a></span>
+            <span class="tags-links">标签 <a href="#">ES6</a>,<a href="#">JavaScript</a>,<a href="#">let</a>,<a href="#">var</a>,
+              <a href="#">变量声明</a>,<a href="#">块级作用域</a></span>
+            <span class="comments-link"><a href="#">我要评论</a> </span>
+          </footer>
+        </article>
+      </section>
+      <section class="main-right fn-layout"></section>
+    </section>
+    <footer class="footer">
+      <div class="footer">
+        Copyright &copy; 2016 Shagang
+      </div>
+    </footer>
+  </body>
+</html>

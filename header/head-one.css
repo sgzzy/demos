@@ -1,0 +1,86 @@
+html,body{
+  height: 100%;
+}
+header.ui-header {
+  width: 100%;
+  height: 100px;
+  background: #f0f0f0;
+}
+.header {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.header-logo {
+  float: left;
+  padding: 28px 0 0 10px;
+}
+.header-logo img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+}
+.header-logo span {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+}
+.header-login {
+  float: right;
+}
+.header-search {
+  float: right;
+}
+.header-nav {
+  padding-left: 200px;
+}
+.list > .list-item {
+  display: inline-block;
+  vertical-align: top;
+  *display: inline;
+  zoom: 1;
+  font-size: 13px;
+}
+.header-nav .list > .list-item {
+  padding-top: 75px;
+}
+.header-nav .list > .list-item > a {
+  padding: 0 1.5em;
+  border-left: 1px solid #c9c9c9;
+}
+.header-nav .list > .list-item:first-child > a {
+  border:none;
+  color: #f00;
+}
+.header-nav a:link {
+  color: #ccc;
+}
+.header-nav a:hover {
+  text-decoration: none;
+}
+.sub-list {
+  display: none;
+  position: absolute;
+  top: 100px;
+  background: #f0f0f0;
+}
+.sub-list > .list-item a{
+  display: block;
+  padding: 0 1.5em;
+  margin: 1em 0;
+}
+.header-login{
+  margin-left: 10px;
+  padding-top: 70px;
+}
+.header-login a{
+  padding:.2em .5em;
+  background: #f0a0a0;
+}
+.header-search{
+  padding-top: 65px;
+}
+.header-search input{
+  padding: .2em .5em .2em 1.5em;
+}
