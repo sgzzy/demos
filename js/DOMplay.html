@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DOM Play</title>
   </head>
   <body>
+    <ul id="list" class="list">
+      <li><a href="#" name="link">1</a></li>
+      <li><a href="#" name="link">2</a></li>
+      <li><a href="#" name="link">3</a></li>
+      <li><a href="#" name="link">4</a></li>
+    </ul>
     <script>
-      var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes, 0);
+      /*var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes, 0);
       function convertToArray(nodes){
         var array = null;
         try {
@@ -18,7 +24,23 @@
           }
         }
         return array;
-      }
+      }*/
+//      var doc = document.documentElement;
+      console.log(document.nodeType);
+      console.log(document.nodeName);
+      console.log(document.nodeValue);
+      console.log(document.childNodes);
+      console.log(document.doctype);
+      console.log(document.title);
+      console.log(document.URL);
+      console.log(document.domain);
+      console.log(document.referrer);
+      console.log(document.getElementById('list'));
+      console.log(document.getElementsByClassName('list')[0]);
+      console.log(document.anchors);
+      console.log(document.links);
+      console.log(document.implementation.hasFeature("CSS3","3.0"));
+      console.log(document.getElementById('list').childElementCount);
     </script>
   </body>
 </html>
