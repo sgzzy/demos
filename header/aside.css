@@ -1,0 +1,47 @@
+
+.main-left {
+  font-size: 14px;
+  width: 150px;
+  margin-right: 10px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+.main-left .aside-title {
+  position: fixed;
+  top: 50%;
+  margin-top: -86px;
+  left: 10px;
+  width: 400px;
+}
+.main-left h2 {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 1em .5em;
+  color: #e96323;
+  background: #feff77;
+}
+.aside-body {
+  padding: 1em .2em;
+  background-color: #447cb4;
+  color: #feff77;
+}
+.aside-body label {
+  display: block;
+  margin-top: 1em;
+}
+.aside-body input {
+  padding: .3em .5em;
+  border: 1px solid #b2b2b2;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-transition: border .25s ease-in-out, box-shadow .25s ease-in-out;
+  -moz-transition: border .25s ease-in-out, box-shadow .25s ease-in-out;
+  -webkit-transition: border .25s ease-in-out, box-shadow .25s ease-in-out;
+  transition: border .25s ease-in-out, box-shadow .25s ease-in-out;
+}
+.aside-body input:focus {
+  outline: none;
+  border: 1px solid rgba(38, 162, 255, .8);
+  box-shadow: 0 0 3px rgba(34, 25, 25, .15), 0 0 3px hsla(0, 0%, 100%, .8), 0 0 6px #52a2eb;
+}

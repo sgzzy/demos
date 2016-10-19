@@ -1,17 +1,11 @@
 .main {
   width: 1200px;
   height: 100%;
-  margin: 0 auto;
-}
-.main-left {
-  font-size: 13px;
-  width: 150px;
-  margin-right: 10px;
+  margin: 100px auto 0;
 }
 .container {
   width: 830px;
   font-size: 13px;
-  height: 100%;
 }
 .panel {
   margin-top: 10px;
@@ -120,8 +114,3 @@ article footer span {
     width: 100%;
     height: 100%;
   }*/
-.main-right {
-  font-size: 13px;
-  width: 200px;
-  margin-left: 10px;
-}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+
+    <label>滚动条的X坐标：<input class="scroll-x" type="text" placeholder="0" id="scroll-x" name="x"> px</label>
+    <label>滚动条的Y坐标：<input class="scroll-y" type="text" placeholder="0" id="scroll-y" name="y"> px</label>
+    <label>窗口的X坐标：<input class="window-x" type="text" placeholder="0" id="window-x" name="y"> px</label>
+    <label>窗口的Y坐标：<input class="window-y" type="text" placeholder="0" id="window-y" name="y"> px</label>
+    <label>视口的宽度：<input class="window-w" type="text" placeholder="0" id="window-w" name="y"> px</label>
+    <label>视口的高度：<input class="window-h" type="text" placeholder="0" id="window-h" name="y"> px</label>
+    <script>
+      function GetPageScroll(){
+        var scroll_x, scroll_y, window_x, window_y, window_w, window_h;
+        //滚动条位置
+        if (window.pageYOffset) {    // all except IE
+          scroll_y = window.pageYOffset;
+          scroll_x = window.pageXOffset;
+        } else if (document.documentElement && document.documentElement.scrollTop) {    // IE 6 Strict
+          scroll_y = document.documentElement.scrollTop;
+          scroll_x = document.documentElement.scrollLeft;
+        } else if (document.body) {    // all other IE
+          scroll_y = document.body.scrollTop;
+          scroll_x = document.body.scrollLeft;
+        }
+        //获取窗口位置
+        window_x = (typeof window.screenLeft == "number") ? window.screenLeft : window.scrollX;
+        window_y = (typeof window.screenTop == "number") ? window.screenTop : window.scrollY;
+        //获取视口大小
+        window_w = window.innerWidth;
+        window_h = window.innerHeight;
+        if (typeof window_w != "number") {
+          if (document.compatMode == "CSS1Compat") {
+            window_w = document.documentElement.clientWidth;
+            window_h = document.documentElement.clientHeight;
+          } else {
+            window_w = document.body.clientWidth;
+            window_h = document.body.clientHeight;
+          }
+        }
+        return {
+          scrollX: scroll_x,
+          scrollY: scroll_y,
+          windowX: window_x,
+          windowY: window_y,
+          windowW: window_w,
+          windowH: window_h
+        };
+      }
+      window.onscroll = function (){
+        var scrollX = document.getElementById('scroll-x');
+        var scrollY = document.getElementById('scroll-y');
+        var windowX = document.getElementById('window-x');
+        var windowY = document.getElementById('window-y');
+        var windowW = document.getElementById('window-w');
+        var windowH = document.getElementById('window-h');
+        scrollX.value = GetPageScroll().scrollX;
+        scrollY.value = GetPageScroll().scrollY;
+        windowX.value = GetPageScroll().windowX;
+        windowY.value = GetPageScroll().windowY;
+        windowW.value = GetPageScroll().windowW;
+        windowH.value = GetPageScroll().windowH;
+      };
+
+    </script>
+  </body>
+</html>

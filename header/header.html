@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="head-one.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="aside.css">
+    <link rel="stylesheet" href="right.css">
     <link rel="stylesheet" href="footer.css">
   </head>
   <body>
@@ -60,10 +62,21 @@
           </ul>
         </nav>
       </div>
-    </header>
+    </header
+    >
     <section class="main fn-clean-space">
       <aside class="main-left fn-layout">
-
+        <div class="aside-title">
+          <h2>获取当前页面滚动条的位置</h2>
+          <div class="aside-body">
+            <label>滚动条的X坐标：<input class="scroll-x" type="text" placeholder="0" id="scroll-x" name="x"> px</label>
+            <label>滚动条的Y坐标：<input class="scroll-y" type="text" placeholder="0" id="scroll-y" name="y"> px</label>
+            <label>&emsp;窗口的X坐标：<input class="window-x" type="text" placeholder="0" id="window-x" name="y"> px</label>
+            <label>&emsp;窗口的Y坐标：<input class="window-y" type="text" placeholder="0" id="window-y" name="y"> px</label>
+            <label>&emsp;&ensp;视口的宽度：<input class="window-w" type="text" placeholder="0" id="window-w" name="y"> px</label>
+            <label>&emsp;&ensp;视口的高度：<input class="window-h" type="text" placeholder="0" id="window-h" name="y"> px</label>
+          </div>
+        </div>
       </aside>
       <section class="container fn-layout">
         <section class="panel">
@@ -128,12 +141,81 @@
           </footer>
         </article>
       </section>
-      <section class="main-right fn-layout"></section>
+      <section class="main-right fn-layout">
+        <div class="right-part">
+          <h2 class="title">
+            文章列表
+          </h2>
+          <div class="body">
+            <ul class="list">
+              <li class="list-item"><a class="article-link">ES6中块级作用域及变量声明let</a></li>
+              <li class="list-item"><a class="article-link">ES6中块级作用域及变量声明let</a></li>
+              <li class="list-item"><a class="article-link">ES6中块级作用域及变量声明let</a></li>
+              <li class="list-item"><a class="article-link">ES6中块级作用域及变量声明let</a></li>
+              <li class="list-item"><a class="article-link">ES6中块级作用域及变量声明let</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </section>
     <footer class="footer">
       <div class="footer">
         Copyright &copy; 2016 Shagang
       </div>
     </footer>
+    <script>
+      function GetPageScroll(){
+        var scroll_x, scroll_y, window_x, window_y, window_w, window_h;
+        //滚动条位置
+        if (window.pageYOffset) {    // all except IE
+          scroll_y = window.pageYOffset;
+          scroll_x = window.pageXOffset;
+        } else if (document.documentElement && document.documentElement.scrollTop) {    // IE 6 Strict
+          scroll_y = document.documentElement.scrollTop;
+          scroll_x = document.documentElement.scrollLeft;
+        } else if (document.body) {    // all other IE
+          scroll_y = document.body.scrollTop;
+          scroll_x = document.body.scrollLeft;
+        }
+        //获取窗口位置
+        window_x = (typeof window.screenLeft == "number") ? window.screenLeft : window.scrollX;
+        window_y = (typeof window.screenTop == "number") ? window.screenTop : window.scrollY;
+        //获取视口大小
+        window_w = window.innerWidth;
+        window_h = window.innerHeight;
+        if (typeof window_w != "number") {
+          if (document.compatMode == "CSS1Compat") {
+            window_w = document.documentElement.clientWidth;
+            window_h = document.documentElement.clientHeight;
+          } else {
+            window_w = document.body.clientWidth;
+            window_h = document.body.clientHeight;
+          }
+        }
+        return {
+          scrollX: scroll_x,
+          scrollY: scroll_y,
+          windowX: window_x,
+          windowY: window_y,
+          windowW: window_w,
+          windowH: window_h
+        };
+      }
+      window.onscroll = function (){
+        var scrollX = document.getElementById('scroll-x');
+        var scrollY = document.getElementById('scroll-y');
+        var windowX = document.getElementById('window-x');
+        var windowY = document.getElementById('window-y');
+        var windowW = document.getElementById('window-w');
+        var windowH = document.getElementById('window-h');
+        scrollX.value = GetPageScroll().scrollX;
+        scrollY.value = GetPageScroll().scrollY;
+        windowX.value = GetPageScroll().windowX;
+        windowY.value = GetPageScroll().windowY;
+        windowW.value = GetPageScroll().windowW;
+        windowH.value = GetPageScroll().windowH;
+      };
+
+    </script>
   </body>
 </html>

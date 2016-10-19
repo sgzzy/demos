@@ -1,0 +1,28 @@
+.main-right {
+  font-size: 13px;
+  width: 200px;
+  margin-left: 10px;
+}
+.right-part {
+  border: 1px solid #c4c4c4;
+}
+.right-part .title {
+  padding: .3em .5em;
+  background-color: #f0f0f0;
+}
+.right-part .body {
+  background: #52a2eb;
+  padding: 1em .5em;
+}
+.right-part .body .list .list-item {
+  display: list-item;
+  list-style: circle inside none;
+  width: 100%;
+}
+.right-part .list .list-item a {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
