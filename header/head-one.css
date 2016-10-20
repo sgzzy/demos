@@ -1,6 +1,3 @@
-html,body{
-  height: 100%;
-}
 header.ui-header {
   position: fixed;
   top:0;
@@ -62,10 +59,13 @@ header.ui-header {
 .header-nav a:hover {
   text-decoration: none;
 }
+.header-nav .list > .list-item:hover .sub-list {
+  display: block;
+}
 .sub-list {
   display: none;
   position: absolute;
-  top: 100px;
+  top: 90px;
   background: #f0f0f0;
 }
 .sub-list > .list-item a{

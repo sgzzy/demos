@@ -30,6 +30,7 @@
   margin-top: 1em;
 }
 .aside-body input {
+  width:50%;
   padding: .3em .5em;
   border: 1px solid #b2b2b2;
   border-radius: 2px;

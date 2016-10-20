@@ -3,8 +3,49 @@
   <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+      table {
+        display: inline-table;
+        background: #f8c9d9;
+        padding: 20px;
+        margin:10px;
+      }
+    </style>
   </head>
   <body>
-    
+    <span>锚点定位需要被定位元素的父元素滚动。</span>
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>编号</th>
+          <th>编号</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td class="only">1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>3</td>
+          <td>3</td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

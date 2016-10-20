@@ -81,7 +81,7 @@
         } else if (/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
           engine.ver = browser.ver = RegExp["$1"];
           engine.khtml = browser.konq = parseFloat(engine.ver);
-        } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
+        } else if (/rv:([^\(]+)\) Gecko\/\d{8}/.test(ua)) {
           engine.ver = RegExp["$1"];
           engine.gecko = parseFloat(engine.ver);
           //确定是不是Firefox
@@ -91,7 +91,7 @@
           }
           //检测浏览器
           browser.ie = engine.ie;
-          browser.opera - engine.opera;
+          browser.opera = engine.opera;
 
           //检测平台
           var p = navigator.platform;
@@ -164,6 +164,7 @@
           };
         }
       }();
+      console.log(client);
     </script>
   </body>
 </html>

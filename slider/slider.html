@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Slider Demo</title>
+    <style>
+      body{
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+        margin:0;
+        padding:0;
+      }
+      .slider-box {
+        width:100%;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
+      }
+      .slider-content{
+        width:1920px;
+        height: 600px;
+        position: absolute;
+        left:50%;
+        margin-left: -960px;
+      }
+      .slider-list {
+        position: absolute;
+        width:11520px;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slider-list-item {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .slider-list .slider-list-item img {
+        width: 1920px;
+        height: 600px;
+      }
+      .pre, .next {
+        display: block;
+        position: absolute;
+        width:50px;
+        height:200px;
+        opacity: 0.3;
+        filter: alpha(opacity = 30);
+        top:50%;
+        margin-top: -150px;
+      }
+      .pre:hover, .next:hover {
+        opacity: 0.5;
+        filter: alpha(opacity = 50);
+      }
+      .pre {
+        left: 20px;
+        background: #000 url(images/slider-arrow.png) no-repeat -102px center;
+      }
+      .next {
+        right: 20px;
+        background: #000 url(images/slider-arrow.png) no-repeat -42px center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-box">
+      <div class="slider-content">
+        <ul class="slider-list">
+          <li class="slider-list-item"><img src="images/banner-01.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-02.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-03.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-04.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-05.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-06.jpg"/></li>
+        </ul>
+      </div>
+      <a class="pre"></a>
+      <a class="next"></a>
+    </div>
+    <script>
+        window.onload = function (){
+          var Width = (function (){
+            var Width = 1920;
+            var Test = {};
+            Test.getWidth = function () {
+              return Width;
+            };
+            return Test;
+          })();
+          var slider = document.querySelector('.slider-list');
+          var pre = document.querySelector('.pre');
+          var next = document.querySelector('.next');
+          var sliderCss = getComputedStyle(slider,null);
+          var time = 1000;
+          var timer = null;
+          var width = parseInt(sliderCss.width);
+          var count = 1;
+          pre.onclick = function (){
+            if (slider.style.left) {
+              var left = parseInt(slider.style.left);
+            } else {
+              var left = parseInt(sliderCss.left);
+            }
+            var disp =  -Width.getWidth();
+            var init = (new Date()).getTime();
+            clearInterval(timer);
+            if (count<6) {
+              timer = setInterval(function (){
+                var instance = (new Date()).getTime() - init;
+                if (instance < time) {
+                  var pos = Math.floor(disp*instance/time);
+                  var result = pos;
+                  slider.style.left = left + 'px';
+                }
+              },1);
+              count++;
+            }
+          };
+          next.onclick = function (){
+            var time = 1000;
+            var width = parseInt(sliderCss.width);
+            var left = parseInt(sliderCss.left);
+            var disp =  Width.getWidth();
+            var init = (new Date()).getTime();
+            clearInterval(timer);
+            timer = setInterval(function (){
+              var instance = (new Date()).getTime() - init;
+              if (instance < time) {
+                var pos = Math.floor(disp*instance/time);
+                left = pos;
+                slider.style.left = left + 'px';
+              }
+            },1);
+          };
+        };
+
+    </script>
+  </body>
+</html>

@@ -3,8 +3,38 @@
   <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+      .demo {
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+        height: 100px;
+        background-color: #2ecc71;
+        text-align: center;
+      }
+      .demo span {
+        margin:20px 100px;
+
+      }
+      .part-01 {
+        flex: 1;
+        order: 2;
+      }
+      .part-02 {
+        flex:3;
+        order: 3;
+      }
+      .part-03 {
+        flex: 2;
+        order: 1;
+      }
+    </style>
   </head>
   <body>
-    
+    <span class="demo">
+      <span class="part-01">锚点定位需要被定位元素的父元素滚动。</span>
+      <span class="part-02">锚点定位需要被定位元素的父元素滚动。</span>
+      <span class="part-03">锚点定位需要被定位元素的父元素滚动。</span>
+    </span>
   </body>
 </html>
