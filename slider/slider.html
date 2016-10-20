@@ -68,14 +68,12 @@
     <div class="slider-box">
       <div class="slider-content">
         <ul class="slider-list">
-          <li class="slider-list-item"><img src="images/banner-06.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-01.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-02.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-03.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-04.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-05.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-06.jpg"/></li>
-          <li class="slider-list-item"><img src="images/banner-01.jpg"/></li>
         </ul>
       </div>
       <a class="pre"></a>
@@ -99,16 +97,17 @@
           var timer = null;
           var width = parseInt(sliderCss.width);
           var count = 1;
-          pre.onclick = function (){
+          next.onclick = function (){ //下一张动作
             if (slider.style.left) {
               var left = parseInt(slider.style.left);
             } else {
               var left = parseInt(sliderCss.left);
             }
+            console.log(left);
             var disp =  -Width.getWidth();
             var init = (new Date()).getTime();
             clearInterval(timer);
-            if (count<=6) {
+            if (count<6) {
               timer = setInterval(function (){
                 var instance = (new Date()).getTime() - init;
                 if (instance < time) {
@@ -119,11 +118,34 @@
               },1);
               setTimeout(function (){
                 slider.style.left = disp*count + 'px';
+                count++;
               },1000);
-              count++;
+
+            } else if(count===6) {
+              var first = document.querySelectorAll('.slider-list-item')[0];
+              console.log(first);
+              first.style.position = 'fixed';
+              first.style.left = -disp + 'px';
+              first.style.top = 0 + 'px';
+              slider.style.left = left - disp + 'px';
+              timer = setInterval(function (){
+                var instance = (new Date()).getTime() - init;
+                if(instance < time) {
+                  var pos = Math.floor(disp*instance/time);
+                  var result = left - disp + pos;
+                  slider.style.left = result + 'px';
+                  first.style.left = -disp + pos + 'px';
+                }
+              },1);
+              setTimeout(function (){
+                slider.style.left = 0 + 'px';
+                first.style.left = 0 + 'px';
+                first.style.position = 'static';
+                count=1;
+              },1000);
             }
           };
-          next.onclick = function (){
+          pre.onclick = function (){ //上一张动作
             if (slider.style.left) {
               var left = parseInt(slider.style.left);
             } else {
@@ -141,7 +163,32 @@
                   slider.style.left = result + 'px';
                 }
               },1);
-              count--;
+              setTimeout(function (){
+                slider.style.left = -disp*(count-2) + 'px';
+                count--;
+              },1000);
+            } else if(count===1) {
+              var last = document.querySelectorAll('.slider-list-item')[5];
+              console.log(last);
+              last.style.position = 'fixed';
+              last.style.left = -disp + 'px';
+              last.style.top = 0 + 'px';
+              timer = setInterval(function (){
+                var instance = (new Date()).getTime() - init;
+                if(instance < time) {
+                  var pos = Math.floor(disp*instance/time);
+                  var result = left + pos;
+                  slider.style.left = result + 'px';
+                  last.style.left = -disp + pos + 'px';
+                }
+              },1);
+              setTimeout(function (){
+                slider.style.left = -disp*5 + 'px';
+                last.style.left = 0 + 'px';
+                last.style.position = 'static';
+                count=6;
+                console.log(count);
+              },1000);
             }
           };
         };
