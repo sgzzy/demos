@@ -68,12 +68,14 @@
     <div class="slider-box">
       <div class="slider-content">
         <ul class="slider-list">
+          <li class="slider-list-item"><img src="images/banner-06.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-01.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-02.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-03.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-04.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-05.jpg"/></li>
           <li class="slider-list-item"><img src="images/banner-06.jpg"/></li>
+          <li class="slider-list-item"><img src="images/banner-01.jpg"/></li>
         </ul>
       </div>
       <a class="pre"></a>
@@ -106,33 +108,41 @@
             var disp =  -Width.getWidth();
             var init = (new Date()).getTime();
             clearInterval(timer);
-            if (count<6) {
+            if (count<=6) {
               timer = setInterval(function (){
                 var instance = (new Date()).getTime() - init;
                 if (instance < time) {
                   var pos = Math.floor(disp*instance/time);
-                  var result = pos;
-                  slider.style.left = left + 'px';
+                  var result = left + pos;
+                  slider.style.left = result + 'px';
                 }
               },1);
+              setTimeout(function (){
+                slider.style.left = disp*count + 'px';
+              },1000);
               count++;
             }
           };
           next.onclick = function (){
-            var time = 1000;
-            var width = parseInt(sliderCss.width);
-            var left = parseInt(sliderCss.left);
+            if (slider.style.left) {
+              var left = parseInt(slider.style.left);
+            } else {
+              var left = parseInt(sliderCss.left);
+            }
             var disp =  Width.getWidth();
             var init = (new Date()).getTime();
             clearInterval(timer);
-            timer = setInterval(function (){
-              var instance = (new Date()).getTime() - init;
-              if (instance < time) {
-                var pos = Math.floor(disp*instance/time);
-                left = pos;
-                slider.style.left = left + 'px';
-              }
-            },1);
+            if (count>1) {
+              timer = setInterval(function (){
+                var instance = (new Date()).getTime() - init;
+                if (instance < time) {
+                  var pos = Math.floor(disp*instance/time);
+                  var result = left + pos;
+                  slider.style.left = result + 'px';
+                }
+              },1);
+              count--;
+            }
           };
         };
 
