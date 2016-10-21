@@ -62,6 +62,29 @@
         right: 20px;
         background: #000 url(images/slider-arrow.png) no-repeat -42px center;
       }
+      .slider-nav{
+        position: absolute;
+        text-align: center;
+        width: 100%; 
+        bottom: 30px;
+      }
+      .slider-nav .slider-trigger {
+        display: inline-block;
+        vertical-align: top;
+        width: 16px;
+        height: 16px;
+        font-size: 0;
+        border-radius: 50%;
+        background: #000;
+        opacity: 0.7;
+        fliter: alpha(opacity = 70);
+        cursor: pointer;
+      }
+      .slider-nav .slider-trigger:hover, .slider-trigger.active {
+        background: #fff;
+        opacity: 1;
+        fliter: alpha(opacity = 100);
+      }
     </style>
   </head>
   <body>
@@ -78,6 +101,14 @@
       </div>
       <a class="pre"></a>
       <a class="next"></a>
+      <ul class="slider-nav">
+        <li class="slider-trigger">1</li>
+        <li class="slider-trigger">2</li>
+        <li class="slider-trigger">3</li>
+        <li class="slider-trigger">4</li>
+        <li class="slider-trigger">5</li>
+        <li class="slider-trigger">6</li>
+      </ul>
     </div>
     <script>
         window.onload = function (){
@@ -90,12 +121,15 @@
             return Test;
           })();
           var slider = document.querySelector('.slider-list');
+          var nav = document.querySelectorAll('.slider-trigger');
+          console.log(nav);
           var pre = document.querySelector('.pre');
           var next = document.querySelector('.next');
           var sliderCss = getComputedStyle(slider,null);
-          var time = 1000;
+          var time = 500;
           var timer = null;
-          var width = parseInt(sliderCss.width);
+          var sliderItem = document.querySelectorAll('.slider-list-item');
+          var len = sliderItem.length;
           var count = 1;
           next.onclick = function (){ //下一张动作
             if (slider.style.left) {
@@ -103,7 +137,6 @@
             } else {
               var left = parseInt(sliderCss.left);
             }
-            console.log(left);
             var disp =  -Width.getWidth();
             var init = (new Date()).getTime();
             clearInterval(timer);
@@ -120,10 +153,8 @@
                 slider.style.left = disp*count + 'px';
                 count++;
               },1000);
-
             } else if(count===6) {
-              var first = document.querySelectorAll('.slider-list-item')[0];
-              console.log(first);
+              var first = sliderItem[0];
               first.style.position = 'fixed';
               first.style.left = -disp + 'px';
               first.style.top = 0 + 'px';
@@ -144,6 +175,14 @@
                 count=1;
               },1000);
             }
+            setTimeout(function (){
+              console.log(count);
+              var trigger = nav[count-1];
+              console.log(trigger);
+              trigger.addclassName = "active";
+              console.log(trigger.className);
+            },1000);
+
           };
           pre.onclick = function (){ //上一张动作
             if (slider.style.left) {
@@ -168,8 +207,7 @@
                 count--;
               },1000);
             } else if(count===1) {
-              var last = document.querySelectorAll('.slider-list-item')[5];
-              console.log(last);
+              var last = sliderItem[len-1];
               last.style.position = 'fixed';
               last.style.left = -disp + 'px';
               last.style.top = 0 + 'px';
@@ -187,7 +225,6 @@
                 last.style.left = 0 + 'px';
                 last.style.position = 'static';
                 count=6;
-                console.log(count);
               },1000);
             }
           };
