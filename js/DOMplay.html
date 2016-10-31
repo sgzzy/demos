@@ -51,6 +51,73 @@
       var ch = document.getElementById('ch');
       console.log(en);
       console.log(ch);
+      function loadScriptString(code){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        try {
+          script.appendChild(document.createTextNode(code));
+        } catch (ex) {
+          script.text = code;
+        }
+        document.body.appendChild(script);
+        //another method
+/*        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "client.js";
+        document.body.appendChild(script);*/
+      }
+      loadScriptString("function sayHi(){alert('hi');}");
+      function loadStyles(url){
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = url;
+        var head = document.getElementsByTagName("head")[0];
+        head.appendChild(link);
+        //another method
+        var style = document.createElement("style");
+        style.type = "text/css";
+        try {
+          style.appendChild(document.createTextNode("body{background-color:red;}"));
+        } catch (ex) {
+          style.stylesheet.cssText = "body{background-color:red;}";
+        }
+        head.appendChild(style);
+      }
+      loadStyles("style.css");
+      //创建table
+      var table = document.createElement("table");
+      table.border = 1;
+      table.width = "100%";
+      //创建tbody
+      var tbody = document.createElement("tbody");
+      table.appendChild(tbody);
+      //创建第一行
+      tbody.insertRow(0);
+      tbody.rows[0].insertCell(0);
+      tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1,1"));
+      tbody.rows[0].insertCell(1);
+      tbody.rows[0].cells[1].appendChild(document.createTextNode("Cell 2,1"));
+      //创建第二行
+      tbody.insertRow(1);
+      tbody.rows[1].insertCell(0);
+      tbody.rows[1].cells[0].appendChild(document.createTextNode("Cell 1,2"));
+      tbody.rows[1].insertCell(1);
+      tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2"));
+      document.body.appendChild(table);
+      //跨浏览器遍历某元素的所有子元素
+      var i,len,child = element.firstChild;
+      while (child != element.lastChild) {
+        if(child.nodeType == 1) { //检查是否为元素
+          processChild(child);
+        }
+        child = child.nextSibling;
+      }
+      //使用新增的Element Traversal
+      while  (child != element.lastElementChild) {
+        processChild(child) ;
+        child = child.nextElementSibling;
+      }
     </script>
   </body>
 </html>
