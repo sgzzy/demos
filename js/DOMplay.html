@@ -15,19 +15,19 @@
     <p id="ch">There are some words.</p>
     <script>
       /*var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes, 0);
-      function convertToArray(nodes){
-        var array = null;
-        try {
-          array = Array.prototype.slice.call(nodes, 0);//针对非IE浏览器
-        } catch (ex) {
-          array = new Array();
-          for (var i = 0, len = nodes.length; i < len; i++) {
-            array.push(nodes[i]);
-          }
-        }
-        return array;
-      }*/
-//      var doc = document.documentElement;
+       function convertToArray(nodes){
+       var array = null;
+       try {
+       array = Array.prototype.slice.call(nodes, 0);//针对非IE浏览器
+       } catch (ex) {
+       array = new Array();
+       for (var i = 0, len = nodes.length; i < len; i++) {
+       array.push(nodes[i]);
+       }
+       }
+       return array;
+       }*/
+      //      var doc = document.documentElement;
       console.log(document.nodeType);
       console.log(document.nodeName);
       console.log(document.nodeValue);
@@ -41,7 +41,7 @@
       console.log(document.getElementsByClassName('list')[0]);
       console.log(document.anchors);
       console.log(document.links);
-      console.log(document.implementation.hasFeature("CSS3","3.0"));
+      console.log(document.implementation.hasFeature("CSS3", "3.0"));
       console.log(document.getElementById('list').childElementCount);
       var list = document.getElementById('list');
       console.log(list.tagName);
@@ -61,10 +61,10 @@
         }
         document.body.appendChild(script);
         //another method
-/*        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "client.js";
-        document.body.appendChild(script);*/
+        /*        var script = document.createElement("script");
+         script.type = "text/javascript";
+         script.src = "client.js";
+         document.body.appendChild(script);*/
       }
       loadScriptString("function sayHi(){alert('hi');}");
       function loadStyles(url){
@@ -106,18 +106,132 @@
       tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2"));
       document.body.appendChild(table);
       //跨浏览器遍历某元素的所有子元素
-      var i,len,child = element.firstChild;
+      var i, len, child = element.firstChild;
       while (child != element.lastChild) {
-        if(child.nodeType == 1) { //检查是否为元素
+        if (child.nodeType == 1) { //检查是否为元素
           processChild(child);
         }
         child = child.nextSibling;
       }
       //使用新增的Element Traversal
-      while  (child != element.lastElementChild) {
-        processChild(child) ;
+      while (child != element.lastElementChild) {
+        processChild(child);
         child = child.nextElementSibling;
       }
+      function getBoundingClientRect(element){
+        var scrollTop = document.documentElement.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft;
+        if (element.getBoundingClientRect) {
+          if (typeof  arguments.callee.offset != "number") {
+            var temp = document.createElement("div");
+            temp.style.cssText = "position:absolute;left:0;top:0;";
+            document.body.appendChild(temp);
+            arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+            document.body.removeChild(temp);
+            temp = null;
+          }
+          var rect = element.getBoundingClientRect();
+          var offset = arguments.callee.offset;
+          return {
+            left: rect.left + offset,
+            right: rect.right + offset,
+            top: rect.top + offset,
+            bottom: rect.bottom + offset
+          };
+        } else {
+          var actualLeft = getElementLeft(element);
+          var actualTop = getElementTop(element);
+          return {
+            left: actualLeft - scrollLeft,
+            right: actualLeft + element.offsetWidth - scrollLeft,
+            top: actualTop - scrollTop,
+            bottom: actualTop + element.offsetHeight - scrollTop
+          };
+        }
+      }
+
+      var supportsTraversals = document.implementation.hasFeature("Traversal", "2.0");
+      var supportsNodeIterator = (typeof document.createNodeIterator == "function");
+      var supportsTreeWalker = (typeof  document.createTreeWalker == "function");
+      var filter = {
+        acceptNode: function (node){
+          return node.tagName.toLowerCase() == 'p' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+        }
+      };
+      var iterator = document.createNodeIterator(root, NodeFilter.SHOW_ELEMENT, filter, false);
+      var EventUtil = {
+        addHadle: function (element, type, handler){
+          if (element.addEventListener) {
+            element.addEventListener(type, handler, false);
+          } else if (element.attachEvent) {
+            element.attachEvent("on" + type, handler);
+          } else {
+            element["on" + type] = handler;
+          }
+        },
+        removeHandler: function (element, type, handler){
+          if (element.removeEventListener) {
+            element.removeEventListener(type, handler, false);
+          } else if (element.detachEvent) {
+            element.detach("on" + type, handler);
+          } else {
+            element["on" + type] = null;
+          }
+        }
+
+      };
+      function getSelectedText(textbox){
+        if (typeof textbox.selectionStart == "number") {
+          return textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
+        } else if (document.selection) {
+          return document.selection.createRange().text;
+        }
+      }
+      function selectText(textbox, startIndex, stopIndex){
+        if (textbox.setSelectionRange) {
+          textbox.setSelectionRange(startIndex, stopIndex);
+        } else if (textbox.createTextRange) {
+          var range = textbox.createTextRange();
+          range.collapse(true);
+          range.moveStart("character", startIndex);
+          range.moveEnd("character", stopIndex - startIndex);
+          range.select();
+        }
+        textbox.focus();
+      }
+      EventUtil.addHadle(textbox, "keypress", function (event){
+        event - EventUtil.getEvent(event);
+        var charCode = EventUtil.getCharCode(event);
+        if (!/\d/.text(String.fromCharCode(charCode))) {
+          EventUtil.preventDefault(event);
+        }
+      });
+      (function (){
+        function tabForward(event){
+          event = EventUtil.getEvent(event);
+          var target = EventUtil.gatTarget(event);
+
+          if (target.value.length == target.maxLength) {
+            var form = target.form;
+            for (var i = 0, len = form.elements.length; i < len; i++) {
+              if (form.elements[i] == target) {
+                if (form.elements[i + 1]) {
+                  form.elements[i + 1].focus();
+                }
+                return;
+              }
+            }
+          }
+        }
+
+        var textbox1 = document.getElementById("textTel1");
+        var textbox2 = document.getElementById("textTel2");
+        var textbox3 = document.getElementById("textTel3");
+        EventUtil.addHadle(textbox1, "keyup", tabForward);
+        EventUtil.addHadle(textbox2, "keyup", tabForward);
+        EventUtil.addHadle(textbox3, "keyup", tabForward);
+      })();
+
     </script>
   </body>
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      window.onload = function (){
+        var indexedDB = window.indexedDB || window.msIndexedDB || window.mozIndexedDB ||
+          window.webkitIndexedDB;
+        var request, database;
+        request = indexedDB.open("admin");
+        request.onerror = function (event){
+          alert("错误： " + event.target.errorCode);
+        };
+        request.onsuccess = function (event){
+          database = event.target.result;
+        };
+        if (database.version != "1.0") {
+          request = database.setVersion("1.0");
+          request.onerror = function (event){
+            alert("错误： " + event.target.errorCode);
+          };
+          request.onsuccess = function (event){
+            alert("Databas name: " + database.name + ", Version: " + database.version);
+          };
+        } else {
+          alert("Databas name: " + database.name + ", Version: " + database.version);
+        }
+        var users = {
+          username: "007",
+          firstName: "James",
+          lastName: "Bond",
+          password: "foo"
+        };
+        var store = database.createObjectStore("users", { keyPath: "username" });
+        var i = 0,
+          requests = [],
+          len = users.length;
+        while (i < len) {
+          request = store.add(users[i++]);
+          request.onerror = function (){
+            //处理错误
+          };
+          request.onsuccess = function (){
+            //处理成功
+          };
+          requests.push(request)
+        }
+        var transaction = database.transaction();//没有参数
+        transaction = database.transaction("users");//传入一个对象存储空间
+        transaction = database.transaction(["users", "anotherStore"]);//传入多个对象存储空间
+        var IDBTransaction = window.IDBTransaction || window.webkitIDBTrasaction;
+        transaction = database.transaction("users", IDBTransaction.READ_WRITE);
+
+        request = database.transaction("users").objectStore("users").get("007");
+        request.onerror = function (event){
+          alert("错误！");
+        };
+        request.onsuccess = function (event){
+          var result = event.target.result;
+          alert(result.firstName);
+        };
+        transaction.onerror = function (event){
+          //整个事务都被取消了
+        };
+        transaction.oncomplete = function (event){//通过oncomplete事件的event访问不到get（）请求返回的任何数据。
+          //整个事务都成功完成了
+        };
+        var store = database.transaction("users").objectStore("users");
+        var index = store.createIndex("username", "username", {unique: flase});
+        index = store.index("username");
+        request = store.openCursor();
+        request.onsuccess = function (event){
+          //处理成功，并检索某一个结果的信息。
+          var cursor = event.target.result;//取得存储空间中的下一个对象。这个属性保存了一个IDBCursor的实例。
+          var value,updateRequest,deleteRequest;
+          if (cursor) { //必须要检查
+            console.log("Key: " + cursor.key + ", Value: " + JSON.stringify(cursor.value));
+            // /此处cursor.value为一个对象
+            if (cursor.key == "foo") {
+              value = cursor.value;
+              value.password = "magic!";  //更新密码
+              updateRequest = cursor.update(value); //请求保存更新，返回一个请求，所以需要指定两个事件处理程序
+              updateRequest.onsuccess = function (){
+                //处理成功
+              };
+              updateRequest.onerror = function (){
+                //处理失败
+              };
+              deleteRequest = cursor.delete(); //请求删除当前项，同样返回一个请求。
+              deleteRequest.onsuccess = function (){
+                //处理成功
+              };
+              deleteRequest.onerror = function (){
+                //处理失败
+              };
+              //如果当前事务没有修改对象存储空间的权限，update和delete会抛出错误
+            }
+            cursor.continue();//移动到下一项
+          } else {
+            console.log("Done!");
+          }
+        };
+        request.onerror = function (event){
+          //处理失败
+        };
+        var IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
+        var onlyRange = IDBKeyRange.only("007");
+        var lowerRange = IDBKeyRange.lowerBound("007",true);
+        var upperRange = IDBKeyRange.upperBound("007",false);
+        var boundRange = IDBKeyRange.bound("007", "ace", true, false);
+        var range = boundRange;
+        request = store.openCursor(range);
+        request.onsuccess = function (event){
+          var cursor = event.target.result;
+          if (cursor){ //必须要检查
+            console.log("Key: " + cursor.key + ", Value: " + JSON.stringify(cursor.value));
+            cursor.continue();
+          } else {
+            console.log("Done！");
+          }
+        };
+        var indexNames = store.indexNames,
+            j = 0,
+            len1 = indexNames.length;
+        while (j < len1) {
+          index = store.index(indexNames[j++]);
+          console.log("Index name: " + index.name + ", KeyPath: " + index.keyPath +
+              ", Unique: " + index.unique);
+        }
+        store.deleteIndex("username");//因为删除索引不会影响对象存储空间中的数据，所以这个操作没有任何回调函数。
+
+      };
+      //credit: Jeff Greenberg for JS implementation of Duff's Device
+      //假设 values.length > 0
+      var iterations = Math.ceil(values.length/8);
+      var leftover = values.length % 8;
+      var i = 0;
+      if (leftover > 0) {
+        do {
+          process(values[i++]);
+        } while (--leftover > 0)
+      }
+      do {
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+          process(values[i++]);
+      } while (--iterations > 0);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

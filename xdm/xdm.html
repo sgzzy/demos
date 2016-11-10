@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>XDM</title>
+    <script src="../js/DOMplay.html" ></script>
+    <script>
+      var iframeWindow = document.getElementById("myframe").contentWindow;
+      iframeWindow.postMessage("A secret", "http:127.0.0.1:8080");
+      EventUtil.addHadle(window, "message", function (event){
+        //确保发送消息的域是一致的域
+        if (event.origin == "http:127.0.0.1:8080") {
+          //处理接收到的数据
+          alert(event.data);
+          //可选：向来源窗口发送回执
+//          event.source.postMessage("Received!","")
+        }
+      });
+      var droptarget = document.getElementById("droptarget");
+      EventUtil.addHadle(droptarget, "dragover", function (event){
+        EventUtil.preventDefault(event);
+      });
+      EventUtil.addHadle(droptarget, "dragenter", function (event){
+        EventUtil.preventDefault(event);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="droptarget"></div>
+    <iframe id="myframe" name="xdmPage" src="http://127.0.0.1:8080/statics/views/about/periodical.html" width="1920" height="600">
+
+    </iframe>
+  </body>
+</html>

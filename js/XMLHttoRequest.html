@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="serialize.js"></script>
+    <script>
+      /* window.onload = function (){
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function (){
+       if (xhr.readyState == 4) {
+       if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+       alert(xhr.responseText);
+       } else {
+       alert("Request was unsuccessful: " + xhr.status);
+       }
+       }
+       };
+       xhr.open("post", "json.html", true);
+       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+       var form = document.getElementById("info");
+       alert(serialize(form));
+       xhr.send(serialize(form));
+
+       };*/
+      /*var url = "json.html";
+       url = addURLParam(url, "name", "Nicholas");
+       url = addURLParam(url, "book", "Professional JavaScript");
+       xhr.open("get", url, false);
+       //      xhr.setRequestHeader("MyHeader","MyValue");
+       xhr.send(null);
+       function addURLParam(url, name, value){
+       url += (url.indexOf("?") == -1 ? "?" : "&");
+       url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
+       return url;*/
+      //      var myHeader = xhr.getResponseHeader("MyHeader");
+      //      var allHeaders = xhr.getAllResponseHeaders();
+      //      xhr.abort();
+      /*  alert(xhr.status);
+       alert(xhr.responseText);
+       alert(xhr.responseXML);
+       alert(xhr.statusText);
+
+       if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+       alert(xhr.responseText);
+       } else {
+       alert("Request was unsuccessful: " + xhr.status);
+       }*/
+    </script>
+    <script>
+      var data = new FormData(document.forms[0]);
+      data.append("name", "Nicholas");
+      alert(data.name);
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function (){
+        if (xhr.readyState == 4) {
+          try {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+              alert(xhr.responseText);
+            } else {
+              alert("Request was unsuccessful: " + xhr.status);
+            }
+          } catch (ex) {
+            //假设有ontimeout事件处理程序处理
+          }
+        }
+      };
+      xhr.onprogress = function (event){
+        var divStatus = document.getElementById("status");
+        if (event.lengthComputable) {
+          divStatus.innerHTML = "Received" + event.position + " of " + event.totalSize + " bytes";
+        }
+      };
+      xhr.open("get", "json.html", true);
+      xhr.timeout = 1000;//将超市设置为1秒钟（仅适用于IE8+）
+      xhr.ontimeout = function (){
+        alert("Request did not return in a second");
+      };
+      xhr.send(null);
+      /*   xhr.abort();
+       xhr.onload = function (event){
+       if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+       alert(xhr.responseText);
+       } else {
+       alert("Request was unsuccessful: " + xhr.status);
+       }
+       };*/
+
+      var xdr = new XDomainRequest();
+      xdr.onload = function (){
+        alert(xdr.responseText);
+      };
+      xdr.onerror = function (){
+        alert("An error occurred.")
+      };
+      xdr.timeout = 1000;
+      xdr.ontimeout = function (){
+        alert("Request took too long")
+      };
+      xdr.open("get",url);
+      xdr.contentType = "application/x-www-form-urlencoded";
+      xdr.send(null);
+
+      function createCORSRequest(method, url){
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+          xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+          xhr = new XDomainRequest();
+          xhr.open(method, url);
+        } else {
+          xhr = null;
+        }
+        return xhr;
+      }
+      var request = createCORSRequest("get", "http://www.somewhere-else.com/page/");
+      if (request) {
+        request.onload = function (){
+          //对request.responseText 进行处理
+        };
+        request.send();
+      }
+      function handleResponse(response){
+        alert("You're at IP adderss " + response.ip + ", whick is in " + response.city + ", " + response.region_name);
+      }
+      var script = document.createElement("script");
+      script.src = "http://freegeoip.net/json/?callback=handleResponse";
+      document.body.insertBefore(script, document.body.firstChild);
+      function createStramingClient(url, progress, finished){
+        var xhr = new XMLHttpRequest(), received = 0;
+        xhr.open("get", url, true);
+        xhr.onreadystatechange = function() {
+          var result;
+          if (xhr.readyState == 3) {
+            //只取得最新数据并调整计数器
+            result = xhr.responseText.substring(received);
+            received += result.length;
+            //调用progress回调函数
+            progress(result);
+          } else if (xhr.readyState == 4) {
+            finished(xhr.responseText);
+          }
+        };
+        xhr.send(null);
+        return xhr;
+      }
+      var client = createStramingClient("streaming.php", function (data){
+        alert("Received: " + data);
+      },function (data){
+        alert("Done!");
+      });
+      var source = new EventSource("myevents.php");
+      source.onmessage = function (event){
+        var data = event.data;
+        //处理数据
+      };
+      source.close();
+      var socket = new WebSocket("ws://www.example.com/server.php");
+      socket.send("Hello World!");
+      var message = {
+        time: new Date(),
+        text: "Hello world!",
+        clientId: "asdfp8734rew"
+      };
+      socket.send(JSON.stringify(message));
+      socket.onmessage = function (event){
+        var data = event.data;
+        //处理数据
+      };
+      socket.onopen = function (){
+        alert("");
+      };
+      socket.onerror = function (){
+        alert("");
+      };
+      socket.onclose = function (event){
+        console.log("Was clean? " + event.wasClean + event.code + event.reason);
+      };
+      function isArray(value){
+        return Object.prototype.toString.call(value) == "[object Array]";
+      }
+      function isFunction(value){
+        return Object.prototype.toString.call(value) == "[object Function]";
+      }
+      function isRegExp(value){
+        return Object.prototype.toString.call(value) == "[object RegExp]";
+      }
+      var isNativeJSON = window.JSON && Object.prototype.toString.call(JSON) == "[object JSON]";
+      function Person(name, age, job){
+        if(this instanceof Person) {
+          this.name = name;
+          this.age = age;
+          this.job = job;
+        } else {
+          return new Person(name, age, job);
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+    <form id="info">
+      <input type="text" name="choose" value="选我">
+    </form>
+    <div id="status"></div>
+  </body>
+</html>

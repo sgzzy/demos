@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" manifest="/offline.manifest">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      window.onload = function (){
+        if (navigator.onLine){
+          //正常工作
+        } else {
+          //执行离线状态时的任务
+        }
+        var EventUtil = {
+          addHandler: function (element, type, handler){
+            if (element.addEventListener) {
+              element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+              element.attachEvent("on" + type, handler);
+            } else {
+              element["on" + type] = handler;
+            }
+          },
+          removeHandler: function (element, type, handler){
+            if (element.removeEventListener) {
+              element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+              element.detach("on" + type, handler);
+            } else {
+              element["on" + type] = null;
+            }
+          },
+          getEvent: function (event){
+            return event ? event : window.event;
+          },
+          getTarget: function (event){
+            return event.target || event.secElement;
+          }
+        };
+        //HTML5事件
+        EventUtil.addHandler(window, "online", function (){
+          alert("Online");
+        });
+        EventUtil.addHandler(window, "offline", function (){
+          alert("Offline");
+        });
+      };
+      EventUtil.addHandler(applicationChace, "updateready", function (){
+        applicationChache.swapCache();
+      });
+      document.cookie = encodeURIComponent("name") + "=" + encodeURIComponent("value"); + "; domain=.wrox.com; path=/";
+      var CookieUtil = {
+        get: function (name){
+          var cookieName = encodeURIComponent(name) + "=",
+            cookieStart = document.cookie.indexOf(cookieName),
+            cookieValue = null;
+          if (cookieStart > -1) {
+            var cookieEnd = document.cookie.indexOf(";", cookieStart);
+            if (cookieEnd == -1) {
+              cookieEnd = document.cookie.length;
+            }
+            cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd));
+          }
+          return cookieValue;
+        }
+      } ;
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>

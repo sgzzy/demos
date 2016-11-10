@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      function arraysSimilar(arr1, arr2){
+        if (!(arr1 instanceof Array) || !(arr2 instanceof Array))
+          return false;
+        if (arr1.length !== arr2.length)
+          return false;
+        var TYPES = ["string", "boolean", "number", "undefined", "null", "function", "date", "window"],
+          i=0,
+          t1,t2,
+          arrMap1 = [],
+          arrMap2 = [];
+        for(var len = arr1.length; i < len; i++) {
+          t1 = typeof(arr1[i]);
+          t2 = typeof(arr2[i]);
+          if(arrMap1[t1]) {
+            arrMap1[t1]++;
+          } else {
+            arrMap1[t1] = 1;
+          }
+          if(arrMap2[t2]) {
+            arrMap2[t2]++;
+          } else {
+            arrMap2[t2] = 1;
+          }
+        }
+        function typeOf (ele) {
+          var r;
+          if (ele === null) r = "null";
+          else if (ele instanceof Array) r = "array";
+          else if (ele === window) r = "window";
+          else if (ele instanceof Date) r = "date";
+          else r = typeof ele;
+          return r;
+        }
+        for(i = 0,len = TYPES.length; i < len; i++) {
+          if (arrMap1[TYPES[i]] !== arrMap2[TYPES[i]]) {
+            return false;
+          }
+        }
+        return true;
+      }
+    </script>
+    <script type="text/javascript" src="testData.js"></script>
+  </head>
+  <body>
+    
+  </body>
+</html>

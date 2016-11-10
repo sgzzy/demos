@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      window.onload = function (){
+        var handler = {
+          message: "Event handled",
+          handleClick: function (event){
+            alert(this.message);
+            console.log(this);
+            console.log(this.message);
+          }
+        };
+        var btn = document.getElementById("btn");
+        console.log(btn);
+        btn.onclick = handler.handleClick;
+      };
+      function bind(fn, context){
+        var args = Array.prototype.slice.call(arguments, 2);
+        return function (){
+          var innerArgs = Array.prototype.slice.call(arguments);
+          var finalArgs = args.concat(innerArgs);
+          return fn.apply(context, finalArgs);
+        };
+      }
+      var processor = {
+        timeoutId: null,
+        //实际进行处理的方法
+        performProcessing: function (){
+          //实际执行的代码
+        },
+        //初始处理调用的方法
+        process: function (){
+          clearTimeout(this.timeoutId);
+          var that = this;
+          this.timeoutId = setTimeout(function (){
+            that.performProcessing();
+          }, 100);
+        }
+      };
+      //尝试开始执行
+      processor.process();
+      function throttle(method, context){
+        clearTimeout(method.tId);
+        method.tId = setTimeout(function (){
+          method.call(context);
+        }, 100);
+      }
+      function EventTarget() {
+        this.handlers = {};
+      }
+      EventTarget.prototype = {
+        constructor: EventTarget,
+        addHandler: function(type, handler) {
+          if (typeof this.handlers[type] == "undefined") {
+            this.handlers[type] = [];
+          }
+          this.handlers[type].push(handler);
+        },
+        fire: function (event){
+          if(!event.target) {
+            event.target = this;
+          }
+          if (this.handlers[event.type] instanceof Array) {
+            var handlers = this.handlers[event.type];
+            for (var i=0, len=handlers.length; i<len; i++) {
+              handlers[i](event);
+            }
+          }
+        },
+        removeHandler: function (type, handler){
+          if (this.handlers[type] instanceof Array) {
+            var handlers = this.handlers[type];
+            for (var i=0, len=handlers.length; i < len; i++) {
+              if (handlers[i] === handler) {
+                break;
+              }
+            }
+            handlers.splice(i, 1);
+          }
+        }
+      };
+      function handleMessage(event) {
+        alert("Message received: " + event.message);
+      }
+      //创建一个新对象
+      var target = new EventTarget();
+
+      //添加一个事件处理程序
+      target.addHandler("message", handleMessage);
+      //触发事件
+      target.fire({ type: "message", message: "Hello world!"});
+      //删除事件处理程序
+      target.removeHandler("message", handleMessage);
+      //再次，赢没有处理程序
+      target.fire({type: "message", message: "Hello world!"});
+    </script>
+  </head>
+  <body>
+    <button id="btn">Click</button>
+  </body>
+</html>

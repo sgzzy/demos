@@ -194,3 +194,39 @@ window.onload = function (){
     }
   }, 4000);
 };
+function Slider(){
+  this.index = 0;
+  this.autopaly = false;
+}
+
+function offset(element, value){
+
+}
+
+Slider.prototype = {
+  slide: function (){
+
+  },
+  pause: function (){
+
+  },
+  play: function (){
+
+  },
+  index: function (){
+
+  },
+  prev: function (){
+
+  },
+  next: function (){
+
+  },
+  auto: function (flag){
+    this.autopaly = flag;
+  }
+};
+
+var slide = new Slider();
+
+slide.index();

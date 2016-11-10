@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      window.onload = function (){
+        var book = {
+          "title": "Professional JavaScript",
+          "authors": ["Nicholas C. Zakas", "ZZY"],
+          edition: 3,
+          year: 2016,
+          "": function (){
+            alert("is not a key-value")
+          },
+          releaseDate: new Date(2016,11,3)
+        };
+        console.log("book: " + book);
+        var jsonText = JSON.stringify(book);
+        var bookCopy = JSON.parse(jsonText,function (key, value){
+          if (key == "releaseDate") {
+            return new Date(value);
+          } else {
+            return value;
+          }
+        });
+        console.log(bookCopy.releaseDate.getFullYear());
+        var mycar = {make:"Honda", model: "Accord", year:1998};
+        mycar.make = null;
+        /* var jsonText = JSON.stringify(book, function (key, value){
+          console.log("key: " + key + " ");
+          console.log("value: " + value);
+          switch (key) {
+            case "authors":
+              return value.join(",");
+            case "year":
+              return 5000;
+            case "edition":
+              return undefined;
+            default:
+              return value;
+          }
+        },3);
+
+       console.log("jsonText: " +jsonText);
+        var arra = "wa ha ha";
+        console.log(typeof arra);
+        var jsonText1 = JSON.stringify(arra, function (key, value){
+          console.log("key: " + key + " ");
+          console.log("value: " + value);
+          switch (key) {
+            case "authors":
+              return value.join(",");
+            case "year":
+              return 5000;
+            case "edition":
+              return undefined;
+            default:
+              return value;
+          }
+        },3 );
+        console.log("jsonText1: " + jsonText1);
+        console.log( jsonText1);*/
+        var list = document.getElementsByClassName("list-item");
+        console.log(-1 in list);
+        console.log(5 in list);
+        console.log(6 in list);
+        console.log(7 in list);
+      };
+    </script>
+  </head>
+  <body>
+  <ul id="list">
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+    <li class="list-item"></li>
+  </ul>
+  </body>
+</html>
