@@ -10,6 +10,8 @@
         width: 150px;
         height: 150px;
         font-size: 0;
+        position: absolute;
+        left: 10px;
         text-align: center;/*水平居中*/
       }
       .demo:after { /*利用空白节点垂直居中，同时让空白节点不占据宽度，避免影响水平居中效果*/
@@ -28,8 +30,9 @@
     </style>
   </head>
   <body>
+    <button id="btn">滑动</button>
     <div class="demo">
-      <img src="">
     </div>
+    <script src="index.js"></script>
   </body>
 </html>

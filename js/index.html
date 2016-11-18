@@ -20,7 +20,7 @@
     <div class="demo">
       <p id="prev">第一个元素，前一个<span>兄弟元素</span></p>
 
-      <ul id="list">
+      <ul id="list" style="width:10em;">
         3
         <li class="list-item">A</li>
         <li class="list-item">B</li>
@@ -61,8 +61,15 @@
         var nextNode = node.getNextSiblingNode();
         console.log(prevNode);
         console.log(nextNode);*/
-        var listCss = new GetCss(list).Css();
-        console.log(listCss.width);
+        var listCss = new GetCss(list);
+        var listWidth = listCss.css(list, "width");
+        console.log(listWidth);
+        var width = listWidth + 50;
+        listCss.css(list,"width",width);
+        console.log(listCss.css(list,"width"));
+        width += 100;
+//        listCss.css(list,"width",width);
+        console.log(list.style.width);
       };
     </script>
   </body>
