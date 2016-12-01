@@ -1,7 +1,10 @@
 /**
  * Created by Administrator on 2016/11/17.
  */
-define(["css", "node", "util"], function (css, node, util){
+define(function (require, exports, module){
+  var css = require("./css");
+  var node = require("./node");
+  var Util = require("./util");
   function Slider(slide){
     this.banner = slide.banner;
     this.slider = slide.slider;
@@ -15,7 +18,7 @@ define(["css", "node", "util"], function (css, node, util){
     this.loop = slide.loop;
     this.active = null;
   }
-
+  module.exports = Slider;
   Slider.prototype = {
     move: function (iTarget){//一次动画的过程
       var pro = this.unit().pro;
@@ -61,7 +64,6 @@ define(["css", "node", "util"], function (css, node, util){
           init: init,
           pro: "left",
           unit: "width"
-
         };
       } else {
         uLength = css(this.sliderItem[0], "height");
@@ -160,14 +162,13 @@ define(["css", "node", "util"], function (css, node, util){
         oThis.active = triggers[0];
         var className, iTarget;
         for (i = 0; i < this.index; i++) {
-          util.addHandler(triggers[i], "mouseover", function (event){
+          Util.addHandler(triggers[i], "mouseover", function (event){
             var index = node.getIndexOfParent(this);
             if (oThis.active && oThis.active != this) {
               className = oThis.active.className;
               oThis.active.className = className.replace(" active", "");
               oThis.active = null;
             }
-            console.log(oThis.active);
             if (oThis.active == null) {
               oThis.active = this;
               oThis.active.className += " active";
@@ -179,5 +180,4 @@ define(["css", "node", "util"], function (css, node, util){
       }
     }
   };
-  return Slider;
 });

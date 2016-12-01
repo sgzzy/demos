@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <!--<script type="text/javascript" src="index.js"></script>-->
-    <script type="text/javascript" src="getnode.js"></script>
-    <script type="text/javascript" src="getcss.js"></script>
+
     <style>
       #list {
         font-size: 16px;
@@ -13,6 +12,8 @@
       }
     </style>
   </head>
+  <script src="jquery.js"></script>
+  <script src="position.js"></script>
   <body>
     <div class="box">
       <a href="#">同辈元素</a>
@@ -30,47 +31,11 @@
       </ul>
       <p id="next">最后一个元素，后一个兄弟元素</p>
     </div>
+    <script type="text/javascript" src="getnode.js"></script>
+    <script type="text/javascript" src="getcss.js"></script>
     <script>
-      window.onload = function (){
-        //        var div = document.getElementsByClassName("demo")[0];
-        var li = document.createElement("li");
-        /*var listItem = document.getElementsByClassName("list-item");
-         li.className = "list-item";
-         li.innerHTML = "D";
-         li = list.cloneNode(true);
-         li = list.firstChild;
-         console.log(list.firstChild);
-         list.appendChild(li);
-         *///list.appendChild(li);
-        //list.insertBefore(li, listItem[2]);
-        //list.replaceChild(li, listItem[2]);
-        //list.removeChild(listItem[1]);
-        //div.appendChild(li);
-        var list = document.getElementById("list");
-        var item = list.childNodes[0];
-        var prev = document.getElementById("prev");
-        var next = document.getElementById("next");
-        /*var node = new GetNode(list);
-        var childNodes = node.getTagChildNodes();
-        console.log(node.getTagChildNodes());
-        console.log(node.getNode());
-        console.log(node.getParentNode());
-        console.log(node.getFirstChildNode());
-        console.log(node.getLastChildNode());
-        var prevNode = node.getPrevSiblingNode();
-        var nextNode = node.getNextSiblingNode();
-        console.log(prevNode);
-        console.log(nextNode);*/
-        var listCss = new GetCss(list);
-        var listWidth = listCss.css(list, "width");
-        console.log(listWidth);
-        var width = listWidth + 50;
-        listCss.css(list,"width",width);
-        console.log(listCss.css(list,"width"));
-        width += 100;
-//        listCss.css(list,"width",width);
-        console.log(list.style.width);
-      };
+       var demo = $("demo");
+       console.log(demo);
     </script>
   </body>
 </html>

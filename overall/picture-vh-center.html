@@ -33,6 +33,23 @@
     <button id="btn">滑动</button>
     <div class="demo">
     </div>
-    <script src="index.js"></script>
+    <script>
+      var OUTBOUNDRE = /(?:^[\\\/]?)\.\.(?:[\\\/]|$)/;
+      var SPLITRE = /\/((?:\d+\.){2}\d+)(?:\/|$)/;
+      var PATHSRE = /^([^/:]+)(\/.+)$/;
+      var VARSRE = /{([^{]+)}/g;
+      var BACKSLASH_RE = /\\/g;
+      var DOT_RE = /\/\.\//g;
+      var DOUBLE_DOT_RE = /\/[^/]+\/\.\.\//;
+      var MULTI_SLASH_RE = /([^:/])\/+\//g;
+      var PROTOCOL_SLASH_RE = /(:)?\/{2,}/;
+      console.log(SPLITRE.test("/1234.5678.90/"));
+      console.log({} && "cc");
+      console.log(PATHSRE.test("6458.5/bc"));
+      var str = "8080/statics/views/about/index.html";
+      var arr = str.match(PATHSRE);
+      console.log(arr);
+
+    </script>
   </body>
 </html>

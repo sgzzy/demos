@@ -89,6 +89,16 @@ define(function (){
           return siblingNodes[num + 1];
         }
       };
+      var getIndexOfParent = function (node){
+        var parenNode = getParentNode(node);
+        var nodes = getAllSibling(node);
+        var len = nodes.length;
+        for (var i = 0; i < len; i++) {
+          if(nodes[i] == node) {
+            return i;
+          }
+        }
+      };
     return {
       getTagChildNodes : getTagChildNodes,
       getParentNode : getParentNode,
@@ -97,6 +107,7 @@ define(function (){
       getAllSibling : getAllSibling,
       getAllSiblingWithoutSelf : getAllSiblingWithoutSelf,
       getPrevSiblingNode : getPrevSiblingNode,
-      getNextSiblingNode : getNextSiblingNode
+      getNextSiblingNode : getNextSiblingNode,
+      getIndexOfParent : getIndexOfParent
     };
 });

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+    <style>
+      .demo {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo"></div>
+    <script>
+      window.onload = function (){
+        var demo = document.getElementsByClassName('demo')[0];
+        var timer = null;
+        document.onkeydown = function (event){
+          event = event? event : window.event;
+          var left = parseInt(getComputedStyle(demo,null).left);
+          var value = -parseInt(1920/10);
+          var unit = -5;
+          if(event.keyCode == 37) {
+            value += left;
+            move(value,unit);
+          } else if (event.keyCode == 39) {
+            value = -value;
+            value += left;
+            unit = 5;
+            console.log(value);
+            console.log(unit);
+            move(value,unit);
+          }
+        };
+        document.onkeyup = function (){
+          clearInterval(timer);
+        };
+        function move(target, unit){
+          var left = parseInt(getComputedStyle(demo, null).left);
+          if (left < target) {
+            timer = setInterval(function (){
+              if (left < target) {
+                left += unit;
+                demo.style.left = left + 'px';
+              } else {
+                demo.style.left = target + 'px';
+                clearInterval(timer);
+              }
+            }, 30);
+          } else {
+            if (left > target) {
+              timer = setInterval(function (){
+                if (left > target) {
+                  left += unit;
+                  demo.style.left = left + 'px';
+                } else {
+                  demo.style.left = target + 'px';
+                  clearInterval(timer);
+                }
+              }, 30);
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
