@@ -3,11 +3,52 @@
   <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+      .demo {
+        width: 100px;
+        height: 100px;
+        background: #f0f0f0;
+        border: 5px solid #ff0;
+        padding: 20px;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
+    </style>
   </head>
   <body>
+    <p>box-left: <i class="box-left"></i>&emsp;&emsp;&emsp;box-top: <i class="box-top"></i></p>
+    <p>mouse-left:<i class="mouse-left"></i>&emsp;&emsp;&emsp;mouse-top:<i class="mouse-top"></i></p>
+    <div class="demo">
+
+    </div>
     <script>
       window.onload = function (){
-
+        var boxLeft = document.getElementsByClassName('box-left')[0];
+        var boxTop = document.getElementsByClassName('box-top')[0];
+        var mouseLeft = document.getElementsByClassName('mouse-left')[0];
+        var mouseTop = document.getElementsByClassName('mouse-top')[0];
+        var demo = document.getElementsByClassName('demo')[0];
+        document.onmousedown = function (event){
+          event = event ? event : window.event;
+          demo.style.left = 100 + 'px';
+          demo.style.top = 100 + 'px';
+          var i = 1;
+          demo.setCapture && demo.setCapture();
+          document.onmousemove = function (event){
+            event = event ? event : window.event;
+            var target = event.target ? event.target : event.srcElement;
+            i++;
+            target.style.left = event.clientX + 'px';
+            target.style.top = event.clientY + 'px';
+          };
+          document.onmouseup = function (event){
+            event = event ? event : window.event;
+            document.onmousedown = null;
+            document.onmousemove = null;
+            demo.releaseCapture && demo.releaseCapture();
+          }
+        };
       };
     </script>
   </body>
