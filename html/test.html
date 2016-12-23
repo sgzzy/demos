@@ -5,68 +5,119 @@
     <title>Testing</title>
     <style>
       .demo {
-        width: 100px;
-        height: 100px;
         position: absolute;
-        left: 0;
-        top: 0;
+        width: 256px;
+        height: 256px;
+        left: 50%;
+        top: 100px;
+        margin-left: -138px;
+        font-size: 0;
         background: #f0f0f0;
       }
+      .demo1 {
+        position: absolute;
+        width: 50px;
+        right: 40%;
+        height: 256px;
+        top: 100px;
+        font-size: 0;
+        background: #ffff00;
+      }
+      .box {
+        width:1px;
+        height:1px;
+        margin: 20px auto;
+        background: #f00;
+      }
+      .color-point {
+        display: inline-block;
+        width: 1px;
+        height: 1px;
+      }
+      table, tbody, tr, td {
+        padding: 0;
+        border: none;
+        border-spacing: 0;
+      }
+      td {
+        width: 1px;
+        height: 1px;
+      }
+      #canvas {
+        border: 1px solid #000;
+      }
     </style>
-  </head>
-  <body>
-    <div class="demo"></div>
     <script>
       window.onload = function (){
-        var demo = document.getElementsByClassName('demo')[0];
-        var timer = null;
-        document.onkeydown = function (event){
-          event = event? event : window.event;
-          var left = parseInt(getComputedStyle(demo,null).left);
-          var value = -parseInt(1920/10);
-          var unit = -5;
-          if(event.keyCode == 37) {
-            value += left;
-            move(value,unit);
-          } else if (event.keyCode == 39) {
-            value = -value;
-            value += left;
-            unit = 5;
-            console.log(value);
-            console.log(unit);
-            move(value,unit);
+        var can = document.getElementById('canvas');
+        var ctx = can.getContext('2d');
+        var myImageData = ctx.createImageData(can.width, can.height);
+        var pixel = [255,0,0,255];
+        for (var i = 0; i <= can.width; i++) {
+          var l = Math.ceil(Math.PI*i/180);
+          if(l > 1) {
+            var indexX = i*Math.sin(Math.PI/180)/(l-1);
+            var indexY = i*(1-Math.cos(Math.PI/180))/(l-1);
           }
-        };
-        document.onkeyup = function (){
-          clearInterval(timer);
-        };
-        function move(target, unit){
-          var left = parseInt(getComputedStyle(demo, null).left);
-          if (left < target) {
-            timer = setInterval(function (){
-              if (left < target) {
-                left += unit;
-                demo.style.left = left + 'px';
-              } else {
-                demo.style.left = target + 'px';
-                clearInterval(timer);
-              }
-            }, 30);
-          } else {
-            if (left > target) {
-              timer = setInterval(function (){
-                if (left > target) {
-                  left += unit;
-                  demo.style.left = left + 'px';
-                } else {
-                  demo.style.left = target + 'px';
-                  clearInterval(timer);
+          for(var j = 0; j < 360; j++) {
+            var x = Math.floor(Math.cos(j*Math.PI/180)*i + can.width/2);
+            var y = Math.floor(Math.sin(j*Math.PI/180)*i + can.width/2);
+            if(j==0) {
+              setData(myImageData,x,y,pixel);
+            } else {
+              for (var k = 0; k < l; k++) {
+                var m = Math.floor(j/90);
+                switch (m) {
+                  case 0:
+                    x -= indexX*k;
+                    y -= indexY*k;
+                    console.log(x);
+                    console.log(y);
+                    setData(myImageData,Math.floor(x),Math.floor(y),pixel);
+                    break;
+                  case 1:
+                    x -= indexX*k;
+                    y += indexY*k;
+                    setData(myImageData,Math.floor(x),Math.floor(y),pixel);
+                    break;
+                  case 2:
+                    x += indexX*k;
+                    y += indexY*k;
+                    setData(myImageData,Math.floor(x),Math.floor(y),pixel);
+                    break;
+                  case 3:
+                    x += indexX*k;
+                    y -= indexY*k;
+                    setData(myImageData,Math.floor(x),Math.floor(y),pixel);
+                    break;
                 }
-              }, 30);
+              }
             }
           }
         }
+        function setData(imageData, x, y, value){
+          imageData.data[(y * (imageData.width * 4) + (x * 4)) + 0] = value[0];
+          imageData.data[(y * (imageData.width * 4) + (x * 4)) + 1] = value[1];
+          imageData.data[(y * (imageData.width * 4) + (x * 4)) + 2] = value[2];
+          imageData.data[(y * (imageData.width * 4) + (x * 4)) + 3] = value[3];
+        }
+        ctx.putImageData(myImageData,0,0);
+        console.log(ctx.getImageData(150,150,1,1));
+        console.log(ctx.getImageData(0,150,1,1));
+        console.log(ctx.getImageData(160,160,1,1));
+        console.log(ctx.getImageData(140,140,1,1));
       };
     </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <!--<div class="box"></div>
+    <button id="btn">点我</button>
+    <div class="demo"></div>
+    <div class="demo1"></div>
+    <canvas id="canvas2"></canvas>
+    <canvas id="canvas3" width=" 200" height="50"></canvas>
+    <input type="text" id="put">-->
   </body>
+
 </html>
