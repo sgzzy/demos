@@ -92,7 +92,17 @@
     </style>
     <script>
       window.onload = function (){
-        //        var can = document.getElementById('can');
+
+        var alink = document.getElementById('click');
+
+        document.addEventListener('click', function (e){
+          alink.style.fontSize  = '20px';
+        });
+        document.addEventListener('click', function (e){
+          e.preventDefault();
+        });
+
+        /*//        var can = document.getElementById('can');
         var btn = document.getElementById('btn');
         var demo = document.getElementsByClassName('demo')[0];
         var close = document.getElementsByClassName('h')[0];
@@ -120,11 +130,13 @@
         var template = demo.innerHTML;
         var reg = /(?!^)(?=<\/?exp)/g;
         //去除换行符，并切割语法标签前的内容
-        var tempArr = template.replace(/\s*\n\s*/g, '').split(reg);
+        var tempArr = template.replace(/\s*\n\s*!/g, '').split(reg);
         var newArr = [];
         var reg2 = /^(<\/?exp(?:\s+\w+\s*=\s*(?:(?:[^>](?!\s))+|['"][^'"]+['"]))?>)(.*)$/;
         console.log(tempArr);
-        console.log(Function.prototype.toString.call(Function));
+        console.log(Function.prototype.toString.call(Function));*/
+
+
       };
 
 
@@ -132,14 +144,15 @@
   </head>
   <body tabindex="2">
     <!--<canvas id='can' width="510" height="510"></canvas>-->
+    <a id="click">点击无效哦</a>
     <button id="btn" tabindex="0">弹出</button>
-    <div class="shade"></div>
+    <!--<div class="shade"></div>
     <div class="demo" tabindex='0'>
       <div class="dialog-content">
       <i class="h"></i>
       <input type="button" tabindex="" id="ok" value="确定">
       </div>
       <div class="tab" tabindex="0">&#x22;</div>
-    </div>
+    </div>-->
   </body>
 </html>
