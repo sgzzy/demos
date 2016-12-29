@@ -30,9 +30,9 @@ function loaded(){
       if (next) {
         if (page >= _pages && pages > _pages) {
 
-          var list = document.querySelectorAll('li');
+          var list = document.querySelectorAll('tr');
           var length = list.length || 0;
-          for ( var i = 0; i < 3; i++) {
+          for ( var i = 0; i < size; i++) {
             var tr = document.createElement('tr');
             for (var j=0; j < 4; j++) {
               var td = document.createElement('td');
@@ -57,9 +57,9 @@ function loaded(){
       }
     } else {
       if (page <= pages) {
-        var list = document.querySelectorAll('li');
+        var list = document.querySelectorAll('tr');
         var length = list.length || 0;
-        for ( var i = 0; i < 3; i++) {
+        for ( var i = 0; i < size; i++) {
           var tr = document.createElement('tr');
           for (var j=0; j < 4; j++) {
             var td = document.createElement('td');
