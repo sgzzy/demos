@@ -1,4 +1,7 @@
 /**
+ * Created by Administrator on 2017/1/10.
+ */
+/**
  * Created by Administrator on 2016/11/9.
  */
 var person = {age:28,title:"fe"};
@@ -16,16 +19,16 @@ function foo(x, y,z){
 
 }
 /*执行上下文
-类似栈的结构
-变量对象：用于存储执行上下文中的：变量、函数声明、函数形参
-*
-activeExecutionContext = {
-  VO : {
-    data_var,
-    data_func_declaration,
-    data_func_arguments
-  }
-};*/
+ 类似栈的结构
+ 变量对象：用于存储执行上下文中的：变量、函数声明、函数形参
+ *
+ activeExecutionContext = {
+ VO : {
+ data_var,
+ data_func_declaration,
+ data_func_arguments
+ }
+ };*/
 //GlobalContextVO (VO === this === global)
 var a = 10;
 function text(x){
@@ -33,27 +36,27 @@ function text(x){
 }
 text(30);
 /*VO(globalContext) = {
-  a: 10,
-  text: <ref to function>
-};
-VO(text functionContext) = {
-  x: 30,
-  b: 20
-};*/
+ a: 10,
+ text: <ref to function>
+ };
+ VO(text functionContext) = {
+ x: 30,
+ b: 20
+ };*/
 //VO(functionContext) === AO 激活对象
 /*
-AO = {
-  arguments:<Arg0>
-};
-arguments = {
-  callee,
-  length,
-  proterties=indexes
-};
-VO填充顺序
-1、函数参数
-2、函数声明（冲突会覆盖）
-3、变量声明（冲突会忽略，其值还是上一个的值）
+ AO = {
+ arguments:<Arg0>
+ };
+ arguments = {
+ callee,
+ length,
+ proterties=indexes
+ };
+ VO填充顺序
+ 1、函数参数
+ 2、函数声明（冲突会覆盖）
+ 3、变量声明（冲突会忽略，其值还是上一个的值）
  */
 function SuperType(name){
   this.name = name;

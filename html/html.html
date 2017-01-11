@@ -1,158 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-      #can {
-        /*background: #00ff00;*/
-      }
-      @font-face {
-        font-family: 'icomoon_close';
-        src: url('../css/fonts/icomoon_close.eot?d80bjg');
-        src: url('../css/fonts/icomoon_close.eot?d80bjg#iefix') format('embedded-opentype'),
-        url('../css/fonts/icomoon_close.ttf?d80bjg') format('truetype'),
-        url('../css/fonts/icomoon_close.woff?d80bjg') format('woff'),
-        url('../css/fonts/icomoon_close.svg?d80bjg#icomoon_close') format('svg');
-        font-weight: normal;
-        font-style: normal;
-      }
-      [class^="icon-"], [class*=" icon-"] {
-        /* use !important to prevent issues with browser extensions that change fonts */
-        font-family: 'icomoon_close' !important;
-        speak: none;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-
-        /* Better Font Rendering =========== */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      .icon-close:before {
-        content: "\e900";
-      }
-      .icon-close {
-        float: right;
-      }
-      .demo {
-        /*display: none;*/
-        left: 50%;
-        top: 50%;
-        margin: -250px 0 0 -250px;
-        position: absolute;
-        border: 1px solid #ccc;
-        background: #ffffff;
-        z-index: 1024;
-        -webkit-box-shadow: 1px 1px 2px #ccc; -moz-box-shadow: 1px 1px 2px #ccc; box-shadow: 1px 1px 2px #ccc;
-      }
-      .dialog-content {
-        height: 500px;
-        width: 500px;
-
-      }
-      .shade {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        opacity: .7;
-        z-index: 1024;
-      }
-      .box {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0.6;
-        filter: alpha(opacity=60);
-        z-index: 0;
-        background: #f0f0f0;
-      }
-      .h {
-        padding: 2px;
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-      }
-      .h::before {
-        content: '';
-        width: 5px;
-        height: 5px;
-        display: block;
-        background: #000;
-      }
-      #ok:before {
-        content: 'abc';
-      }
-    </style>
-    <script>
-      window.onload = function (){
-
-        var alink = document.getElementById('click');
-
-        document.addEventListener('click', function (e){
-          alink.style.fontSize  = '20px';
-        });
-        document.addEventListener('click', function (e){
-          e.preventDefault();
-        });
-
-        /*//        var can = document.getElementById('can');
-        var btn = document.getElementById('btn');
-        var demo = document.getElementsByClassName('demo')[0];
-        var close = document.getElementsByClassName('h')[0];
-        var box = document.createElement('div');
-        var ok = document.getElementById('ok');
-        btn.focus();
-        box.className = 'box';
-        var tab = document.getElementsByClassName('tab')[0];
-        close.onclick = function (){
-          demo.style.display = 'none';
-          document.body.removeChild(box);
-        };
-        tab.onfocus = function (){
-          console.log(1);
-          demo.focus();
-        };
-        btn.onclick = function (){
-          var dialog = demo.cloneNode(true);
-          console.log(1);
-          document.body.appendChild(dialog);
-          dialog.style.left = '400px';
-          dialog.style.top = '300px';
-          dialog.focus();
-        };
-        var template = demo.innerHTML;
-        var reg = /(?!^)(?=<\/?exp)/g;
-        //去除换行符，并切割语法标签前的内容
-        var tempArr = template.replace(/\s*\n\s*!/g, '').split(reg);
-        var newArr = [];
-        var reg2 = /^(<\/?exp(?:\s+\w+\s*=\s*(?:(?:[^>](?!\s))+|['"][^'"]+['"]))?>)(.*)$/;
-        console.log(tempArr);
-        console.log(Function.prototype.toString.call(Function));*/
-
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Radio group selectedIndex example</title>
+    <script type="text/javascript">
+      var o = {
+        code: "A"
       };
-
-
+      var a = {
+        num: 5
+      };
+      a.prototype = o;
+      a.prototype.constructor = a;
+      var s = {
+        style: "String"
+      };
+      var obj = {};
+      Object.assign(obj, a, s);
+      window.onload = function (){
+        var obj = {};
+        defineProperties(obj, {
+          "property1": {
+            value: true,
+            writable: true
+          },
+          "property2": {
+            value: "Hello",
+            writable: false
+          }
+          // 等等.
+        });
+      }
     </script>
   </head>
-  <body tabindex="2">
-    <!--<canvas id='can' width="510" height="510"></canvas>-->
-    <a id="click">点击无效哦</a>
-    <button id="btn" tabindex="0">弹出</button>
-    <!--<div class="shade"></div>
-    <div class="demo" tabindex='0'>
-      <div class="dialog-content">
-      <i class="h"></i>
-      <input type="button" tabindex="" id="ok" value="确定">
-      </div>
-      <div class="tab" tabindex="0">&#x22;</div>
-    </div>-->
+
+  <body>
+    <form name="myForm" onsubmit="return(checkForm());">
+      <fieldset><legend>Select a gadget</legend>
+        <p><input type="radio" name="myRadioGroup" id="ourShirt" value="shirt" /> <label for="ourShirt">shirt</label><br />
+          <input type="radio" name="myRadioGroup" id="ourPants" value="pants" /> <label for="ourPants">pants</label><br />
+          <input type="radio" name="myRadioGroup" id="ourBelt" value="belt" /> <label for="ourBelt">belt</label><br />
+          <input type="radio" name="myRadioGroup" id="ourShoes" value="shoes" /> <label for="ourShoes">shoes</label></p>
+        <p><span style="cursor:pointer;text-decoration:underline;color:#0000ff;" onclick="document.myForm.myRadioGroup.selectedIndex=2;">Select our favorite gadget ;-)</span></p>
+        <p><input type="submit" value="Order!" />
+      </fieldset>
+    </form>
   </body>
 </html>

@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2016/12/28.
  */
+
 var refresher = {
   //设置下拉刷新和上拉加载的参数
   option: {
@@ -213,8 +214,6 @@ var refresher = {
     pullUp.appendChild(pullUpLabel);
     scroller.appendChild(pullUp);
 
-
-
     //根据设置 隐藏上拉下拉标签
     if (!this.option.pull_up)
       pullUp.style.display = 'none';
@@ -223,6 +222,5 @@ var refresher = {
     //实例化iscroll
     document.addEventListener('touchmove', function (e){ e.preventDefault(); }, false);
     return this.iScroll(parameter, this.option, this.loading_style, pullUp, pullDown);
-
   }
 };
