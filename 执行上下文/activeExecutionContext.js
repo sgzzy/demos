@@ -4,17 +4,19 @@
 /**
  * Created by Administrator on 2016/11/9.
  */
-var person = {age:28,title:"fe"};
-delete person.age;//true
-delete person["title"];//true
-console.log(person.age);//undefined
-delete person.age;//true;返回该属性是否被删除
+var person = {
+  age: 28,
+  title: "fe"
+};
+delete person.age; //true
+delete person["title"]; //true
+console.log(person.age); //undefined
+delete person.age; //true;返回该属性是否被删除
 
-delete Object.prototype;//false
-var descriptor = Object.getOwnPropertyDescriptor(Object,"prototype");
-console.log(descriptor.configurable);
+delete Object.prototype; //false
+var descriptor = Object.getOwnPropertyDescriptor(Object, "prototype");
 
-function foo(x, y,z){
+function foo(x, y, z) {
   var len = arguments.length;
 
 }
@@ -31,7 +33,8 @@ function foo(x, y,z){
  };*/
 //GlobalContextVO (VO === this === global)
 var a = 10;
-function text(x){
+
+function text(x) {
   var b = 20;
 }
 text(30);
@@ -58,14 +61,15 @@ text(30);
  2、函数声明（冲突会覆盖）
  3、变量声明（冲突会忽略，其值还是上一个的值）
  */
-function SuperType(name){
+function SuperType(name) {
   this.name = name;
   this.colors = ["red", "blue", "green"];
 }
-SuperType.prototype.sayName = function (){
+SuperType.prototype.sayName = function () {
   console.log(this.name);
 };
-function SubType(name, age){
+
+function SubType(name, age) {
   SuperType.call(this, name);
   this.age = age;
 }
@@ -95,16 +99,19 @@ SubType.prototype.constructor = SubType;
  */
 console.log(a);
 var a = 10;
-function a(){
+
+function a() {
   var b = 0;
 }
 console.log(a);
-function A(){
+
+function A() {
   console.log(a);
   console.log(c);
   console.log(e);
   var c = 10;
-  function e(){
+
+  function e() {
     console.log(e);
     console.log(a);
     console.log(c);
